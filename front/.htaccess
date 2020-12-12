@@ -1,0 +1,5 @@
+#RewriteBase /front/
+#
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^(.*)$ /front/index.php?u=$1 [NC,QSA]
+#
