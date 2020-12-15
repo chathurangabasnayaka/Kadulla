@@ -39,27 +39,6 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="index.php?list_news" class="nav-link">
-                        <i class="nav-icon fas fa-newspaper"></i>
-                        <p>Manage News</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="index.php?list_book" class="nav-link">
-                        <i class="nav-icon fas fa-book"></i>
-                        <p>Manage Flipping Book</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="index.php?list_pdf" class="nav-link">
-                        <i class="nav-icon fas fa-book-medical"></i>
-                        <p>Manage PDF</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
                     <a href="index.php?list_author" class="nav-link">
                         <i class="nav-icon fas fa-user-plus"></i>
                         <p>Manage Author</p>
@@ -67,11 +46,53 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="index.php?app_version" class="nav-link">
-                        <i class="nav-icon fas fa-phone"></i>
-                        <p>App Version</p>
+                    <a href="index.php?list_publisher" class="nav-link">
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>Manage Publisher</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="index.php?list_type" class="nav-link">
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>Manage Type</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="index.php?list_translator" class="nav-link">
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>Manage Translator</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="index.php?list_book" class="nav-link">
+                        <i class="nav-icon fas fa-book-medical"></i>
+                        <p>Manage Book</p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="index.php?list_news" class="nav-link">
+                        <i class="nav-icon fas fa-newspaper"></i>
+                        <p>Manage News</p>
+                    </a>
+                </li>
+
+<!--                <li class="nav-item">-->
+<!--                    <a href="index.php?list_book" class="nav-link">-->
+<!--                        <i class="nav-icon fas fa-book"></i>-->
+<!--                        <p>Manage Flipping Book</p>-->
+<!--                    </a>-->
+<!--                </li>-->
+
+<!--                <li class="nav-item">-->
+<!--                    <a href="index.php?app_version" class="nav-link">-->
+<!--                        <i class="nav-icon fas fa-phone"></i>-->
+<!--                        <p>App Version</p>-->
+<!--                    </a>-->
+<!--                </li>-->
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -9,15 +9,15 @@ if (isset($_POST['login'])) {
     $password = mysqli_real_escape_string($con, $_POST['password']);
 
     // Fetch data from database on the basis of username/email and password
-    $sql = mysqli_query($con, "SELECT username,email,password FROM `user` WHERE (username='$email' || email='$email')");
+    $sql = mysqli_query($con, "SELECT uname,email,pass FROM tbluser WHERE (uname='$email' || email='$email')");
     $num = mysqli_fetch_array($sql);
 
     if ($num > 0) {
-        $hashpassword = $num['password']; // Hashed password fething from database
+        $hashpassword = $num['pass']; // Hashed password fething from database
         //verifying Password
         if (password_verify($password, $hashpassword)) {
 //            $_SESSION['login'] = $_POST['email'];
-            $_SESSION['login'] = $num['username'];
+            $_SESSION['login'] = $num['uname'];
             echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
         } else {
             $msg = 'Wrong Password.!';

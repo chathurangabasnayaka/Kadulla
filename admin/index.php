@@ -43,20 +43,24 @@ if (strlen($_SESSION['login']) == 0) {
         include("includes/list_author.php");
     } else if (isset($_GET['author'])) {
         include("includes/addAuthor.php");
-    } else if (isset($_GET['news'])) {
-        include("includes/addNews.php");
-    } else if (isset($_GET['list_news'])) {
-        include("includes/list_news.php");
+    } else if (isset($_GET['list_publisher'])) {
+        include("includes/list_publisher.php");
+    } else if (isset($_GET['publisher'])) {
+        include("includes/addPublisher.php");
+    } else if (isset($_GET['list_type'])) {
+        include("includes/list_type.php");
+    } else if (isset($_GET['type'])) {
+        include("includes/addType.php");
     } else if (isset($_GET['list_book'])) {
         include("includes/list_book.php");
-    } else if (isset($_GET['addBook'])) {
+    } else if (isset($_GET['add_book'])) {
         include("includes/addBook.php");
-    }else if (isset($_GET['list_pdf'])) {
-        include("includes/list_pdf.php");
-    }else if (isset($_GET['add_pdf'])) {
-        include("includes/addPDF.php");
-    }else if (isset($_GET['app_version'])) {
+    } else if (isset($_GET['app_version'])) {
         include("includes/appVersion.php");
+    } else if (isset($_GET['list_book'])) {
+        include("includes/list_translator.php");
+    } else if (isset($_GET['add_book'])) {
+        include("includes/addTranslator.php");
     } else {
         include 'includes/index.php';
     }
@@ -82,7 +86,6 @@ if (strlen($_SESSION['login']) == 0) {
     ////Change Password Page
     $("#save").click(function (e) {
         e.preventDefault();
-
         let pass = $("#password").val();
         let newpass = $("#newPassword").val();
         let conpass = $("#confirmPassword").val();
@@ -123,17 +126,16 @@ if (strlen($_SESSION['login']) == 0) {
     ////Add Category
     $('#categoryAdd').on('submit', function (e) {
         e.preventDefault();
-        let lan = $('#select_lan').val();
         let name = $('#catsName').val();
-        if (lan == null) {
-            toastr.error('Please select language !!');
+        if (name == null || name == "") {
+            toastr.error('Please Fill all Field !!');
             return;
         } else {
-            let dataString = 'lan=' + lan + '&name=' + name;
+            let dataString = 'name=' + name + '&check=' + 'insert';
             $.ajax({
                 type: 'POST',
                 data: dataString,
-                url: 'controllers/addCats.php',
+                url: 'controllers/categories.php',
                 success: function (data) {
                     if (data == 1) {
                         toastr.success('Form data submitted successfully!');
@@ -175,55 +177,63 @@ if (strlen($_SESSION['login']) == 0) {
         }]
     });
 
-    let table = $('#view_cats').DataTable();
+    let cats_table = $('#view_cats').DataTable();
 
     $('#view_cats tbody').on('click', '#cats_edit', function () {
-        let data = table.row($(this).parents('tr')).data();
+        let data = cats_table.row($(this).parents('tr')).data();
         $('[name ="catsName"]').val(data[1]);
-        $('[name ="select_lan"]').val(data[4]).trigger('change');
-        $('[name ="catsId"]').val(data[3]);
+        $('[name ="catsId"]').val(data[0]);
         $('#modal-editCats').modal('show');
     });
 
     $('#view_cats tbody').on('click', '#cats_dlt', function () {
-        let data = table.row($(this).parents('tr')).data();
+        let data = cats_table.row($(this).parents('tr')).data();
         $('#modal-dlt').modal('show');
-        $('[name ="cid"]').val(data[3]);
+        $('[name ="cid"]').val(data[0]);
     });
     ////End View Category
 
     ////Start Category Update
     $('.catsUpdate').on('submit', function (e) {
         e.preventDefault();
-        let xmlHttp = new XMLHttpRequest();
-        xmlHttp.open('POST', 'controllers/updateCats.php', true);
-        xmlHttp.send(new FormData(this));
-        xmlHttp.onreadystatechange = function () {
-            if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-                if (xmlHttp.responseText == '1') {
-                    toastr.success('Form data submitted successfully!');
-                    $('#modal-editCats').modal('hide');
-                    setTimeout(function () {
-                        location.reload();
-                    }, 2000);
-                } else if (xmlHttp.responseText == '3') {
-                    toastr.error('Category already exists !!');
-                    $('#modal-editCats').modal('hide');
-                } else {
-                    toastr.error('Sorry, there was an error uploading your file.');
+        let id = $('[name ="catsId"]').val();
+        let name = $('[name ="catsName"]').val();
+
+        if (name == null || name == "") {
+            toastr.error('Please Fill all Field !!');
+            return;
+        } else {
+            let dataString = 'name=' + name + '&check=' + 'update' + '&id=' + id;
+            $.ajax({
+                type: 'POST',
+                data: dataString,
+                url: 'controllers/categories.php',
+                success: function (data) {
+                    if (data == 1) {
+                        $('#modal-editCats').modal('hide');
+                        toastr.success('Form data submitted successfully!');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 2000);
+                    } else if (data == 3) {
+                        toastr.error('Category Already exists !!');
+                    } else {
+                        toastr.error('Failed !!');
+                    }
+
                 }
-            }
-        };
+            });
+        }
     });
 
     $("#dlt_Catsbtn").click(function (e) {
         e.preventDefault();
         let cid = $('#cid').val();
-        let dataString = 'cid=' + cid;
+        let dataString = 'cid=' + cid + '&check=' + 'delete';
         $.ajax({
             type: 'POST',
             data: dataString,
-            url: 'controllers/updateCats.php',
+            url: 'controllers/categories.php',
             success: function (data) {
                 if (data == 1) {
                     toastr.success('Form data Updated successfully!');
@@ -240,16 +250,20 @@ if (strlen($_SESSION['login']) == 0) {
     });
     ////End Category Update
 
-    ////Start Add Author
+    ////Start Add Transator
     $('#authorAdd').on('submit', function (e) {
         e.preventDefault();
         let auName = $('#authorName').val();
         if (auName == "") {
             alert("Author must be filled out ");
+            toastr.success('Author must be filled out!');
+            return;
         } else {
             let xmlHttp = new XMLHttpRequest();
-            xmlHttp.open('POST', 'controllers/addAuthor.php', true);
-            xmlHttp.send(new FormData(this));
+            xmlHttp.open('POST', 'controllers/authors.php', true);
+            let formData = new FormData(this);
+            formData.append('check', 'insert');
+            xmlHttp.send(formData);
             xmlHttp.onreadystatechange = function () {
                 if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
                     if (xmlHttp.responseText == '1') {
@@ -258,14 +272,13 @@ if (strlen($_SESSION['login']) == 0) {
                             location.reload();
                         }, 2000);
                     } else if (xmlHttp.responseText == '3') {
-                        toastr.error('Author Image already exists !!');
+                        toastr.error('Author already exists !!');
                     } else {
                         toastr.error('Sorry, there was an error uploading your file.');
                     }
                 }
             };
         }
-
     });
     ////End Add Author
 
@@ -311,6 +324,7 @@ if (strlen($_SESSION['login']) == 0) {
         let data = author_table.row($(this).parents('tr')).data();
         $('[name ="AuthorId"]').val(data[0]);
         $('[name ="AuthorName"]').val(data[1]);
+        $('[name ="authorDes"]').summernote('code', data[2]);
         $('[name ="imgName"]').text(data[3]);
         $('#modal-editAuthor').modal('show');
     });
@@ -326,8 +340,10 @@ if (strlen($_SESSION['login']) == 0) {
     $('.authorUpdate').on('submit', function (e) {
         e.preventDefault();
         let xmlHttp = new XMLHttpRequest();
-        xmlHttp.open('POST', 'controllers/updateAuthor.php', true);
-        xmlHttp.send(new FormData(this));
+        xmlHttp.open('POST', 'controllers/authors.php', true);
+        let formData = new FormData(this);
+        formData.append('check', 'update');
+        xmlHttp.send(formData);
         xmlHttp.onreadystatechange = function () {
             if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
                 if (xmlHttp.responseText == '1') {
@@ -336,6 +352,8 @@ if (strlen($_SESSION['login']) == 0) {
                     setTimeout(function () {
                         location.reload();
                     }, 2000);
+                } else if (xmlHttp.responseText == '3') {
+                    toastr.error('Author already exists !!');
                 } else {
                     toastr.error('Sorry, there was an error uploading your file.');
                 }
@@ -346,11 +364,11 @@ if (strlen($_SESSION['login']) == 0) {
     $("#dlt_authorbtn").click(function (e) {
         e.preventDefault();
         let cid = $('#cid').val();
-        let dataString = 'cid=' + cid;
+        let dataString = 'cid=' + cid + '&check=' + 'delete';
         $.ajax({
             type: 'POST',
             data: dataString,
-            url: 'controllers/updateAuthor.php',
+            url: 'controllers/authors.php',
             success: function (data) {
                 if (data == 1) {
                     toastr.success('Form data Updated successfully!');
@@ -365,77 +383,10 @@ if (strlen($_SESSION['login']) == 0) {
             }
         });
     });
-    ////End Category Update
+    ////End Author Update
 
-    ////Start Add News
-    $('#select_lan').on("change", function () {
-        let categoryId = $(this).find('option:selected').val();
-        $.ajax({
-            url: "controllers/load_Category.php",
-            type: "POST",
-            data: "categoryId=" + categoryId,
-            success: function (response) {
-                $("#select_cats").html(response);
-            },
-        });
-    });
-
-    $('#newsAdd').on('submit', function (e) {
-        e.preventDefault();
-
-        if ($("#select_lan").val() == null) {
-            toastr.error('Sorry, Can not Empty Language');
-            return;
-        }
-
-        if ($("#select_cats").val() == "Select Category") {
-            toastr.error('Sorry, Can not Empty Category');
-            return;
-        }
-
-        if ($("#select_au").val() == null) {
-            toastr.error('Sorry, Can not Empty Author');
-            return;
-        }
-
-        if ($('[name ="news_title"]').val() == "") {
-            toastr.error('Sorry, Can not Empty Title');
-            return;
-        }
-
-        if ($('[name ="newsDes"]').summernote('isEmpty')) {
-            toastr.error('Sorry, Can not Empty Description');
-            return;
-        }
-
-        if ($('[name ="newsDes"]').summernote('isEmpty') | $('[name ="newsDes"]').summernote('code')) {
-            toastr.error('Sorry, Can not Empty Description');
-            return;
-        }
-
-        let formData = new FormData(this);
-        let xmlHttp = new XMLHttpRequest();
-        xmlHttp.open('POST', 'controllers/addNews.php', true);
-        xmlHttp.send(formData);
-        xmlHttp.onreadystatechange = function () {
-            if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-                if (xmlHttp.responseText == '1') {
-                    toastr.success('Form data submitted successfully!');
-                    setTimeout(function () {
-                        location.reload();
-                    }, 2000);
-                } else if (xmlHttp.responseText == '3') {
-                    toastr.error('News Image already exists !!');
-                } else {
-                    toastr.error('Sorry, there was an error uploading your file.');
-                }
-            }
-        };
-    });
-    ////End Add News
-
-    ////start View News
-    $('#view_news').DataTable({
+    ////Start Publisher
+    $('#view_publisher').DataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
@@ -447,85 +398,96 @@ if (strlen($_SESSION['login']) == 0) {
         "pageLength": 5,
         "processing": true,
         "serverSide": true,
-        "ajax": "controllers/view_news.php",
+        "ajax": "controllers/view_publisher.php",
 
         "columnDefs": [
             {
-                "targets": [2],
-                "visible": false,
-                "searchable": false
-            }, {
                 className: "dt-center",
                 "targets": 3,
                 "data": null,
                 "render": function (data, type, JsonResultRow, meta) {
-                    return '<img width="80px" height="80px" src="img/news/' + JsonResultRow[3] + '" rel="' + JsonResultRow[3] + '"/>';
+                    return '<img width="auto" height="40px" src="img/publisher/' + JsonResultRow[3] + '" rel="' + JsonResultRow[3] + '"/>';
                 }
             }
             ,
             {
                 className: "dt-center",
-                "targets": 6,
+                "targets": -1,
                 "data": null,
                 "defaultContent":
-                    "<a id='news_edit' href='#'><i class='fas fa-edit' style='color:#00b44e'></i></a> <a href='#' id='news_dlt'><i class='fas fa-trash-alt' style='color:#a71d2a'></i></a>"
+                    "<a id='pub_edit' href='#'><i class='fas fa-edit' style='color:#00b44e'></i></a> <a href='#' id='pub_dlt'><i class='fas fa-trash-alt' style='color:#a71d2a'></i></a>"
             }
         ]
     });
 
-    let news_table = $('#view_news').DataTable();
+    let pub_table = $('#view_publisher').DataTable();
 
-    $('#view_news tbody').on('click', '#news_edit', function () {
-        let data = news_table.row($(this).parents('tr')).data();
-        $('[name ="newsId"]').val(data[0]);
-        $('[name ="NewsTitle"]').val(data[1]);
-        $('#select_lan').val(data[7]).trigger('change');
-        $('#select_au').val(data[8]).trigger('change');
-        $('[name ="newsDes"]').summernote('code', data[2]);
+    $('#view_publisher tbody').on('click', '#pub_edit', function () {
+        let data = pub_table.row($(this).parents('tr')).data();
+        $('[name ="pubId"]').val(data[0]);
+        $('[name ="pubName"]').val(data[1]);
+        $('[name ="pubDes"]').summernote('code', data[2]);
         $('[name ="imgName"]').text(data[3]);
-        $('#modal-edit-news').modal('show');
+        $('#modal-edit-pub').modal('show');
     });
 
-    $('#view_news tbody').on('click', '#news_dlt', function () {
-        let data = news_table.row($(this).parents('tr')).data();
-        $('#modal-dlt-news').modal('show');
-        $('[name ="cid"]').val(data[0]);
+    $('#view_publisher tbody').on('click', '#pub_dlt', function () {
+        let data = pub_table.row($(this).parents('tr')).data();
+        $('#modal-dlt-pub').modal('show');
+        $('[name ="pubid"]').val(data[0]);
     });
-    ////End View News
 
-    ////start Update News
-    $('.newsUpdate').on('submit', function (e) {
+    $('.pubUpdate').on('submit', function (e) {
         e.preventDefault();
-        let xmlHttp = new XMLHttpRequest();
-        xmlHttp.open('POST', 'controllers/updateNews.php', true);
-        xmlHttp.send(new FormData(this));
-        xmlHttp.onreadystatechange = function () {
-            if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-                if (xmlHttp.responseText == '1') {
-                    toastr.success('Form data submitted successfully!');
-                    $('#modal-edit-news').modal('hide');
-                    setTimeout(function () {
-                        location.reload();
-                    }, 2000);
-                } else {
-                    toastr.error('Sorry, there was an error uploading your file.');
+        let id = $('[name ="pubId"]').val();
+        let name = $('[name ="pubName"]').val();
+        let des = $('[name ="pubDes"]').val();
+
+        if (des == "" || name == "") {
+            toastr.error('Please Fill all Field !!');
+            return;
+        } else {
+            // let dataString = 'name=' + name + '&check=' + 'update' + '&id=' + id + '&des=' + des;
+            let formData = new FormData(this);
+            formData.append('check', 'update');
+            $.ajax({
+                type: 'POST',
+                // data: dataString,
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                url: 'controllers/publishers.php',
+                success: function (data) {
+                    if (data == 1) {
+                        $('#modal-edit-pub').modal('hide');
+                        toastr.success('Form data submitted successfully!');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 2000);
+                    } else if (data == 3) {
+                        toastr.error('Category Already exists !!');
+                    } else {
+                        toastr.error('Failed !!');
+                    }
+
                 }
-            }
-        };
+            });
+        }
     });
 
-    $("#dlt_Newsbtn").click(function (e) {
+    $("#dlt_pub_btn").click(function (e) {
         e.preventDefault();
-        let cid = $('#cid').val();
-        let dataString = 'cid=' + cid;
+        let cid = $('[name ="pubid"]').val();
+        let dataString = 'cid=' + cid + '&check=' + 'delete';
         $.ajax({
             type: 'POST',
             data: dataString,
-            url: 'controllers/updateNews.php',
+            url: 'controllers/publishers.php',
             success: function (data) {
                 if (data == 1) {
                     toastr.success('Form data Updated successfully!');
-                    $('#modal-dlt-news').modal('hide');
+                    $('#modal-dlt-pub').modal('hide');
                     setTimeout(function () {
                         location.reload();
                     }, 2000);
@@ -536,54 +498,47 @@ if (strlen($_SESSION['login']) == 0) {
             }
         });
     });
-    ////End Update News
 
-    ////Start Add Book
-    $('#bookAdd').on('submit', function (e) {
+    $('#publisherAdd').on('submit', function (e) {
         e.preventDefault();
-        let date = $('[name="issue_date"]').val();
-
-        var now = new Date();
-        var dateString = moment(now).format('YYYY-MM-DD');
-
-        if (Date.parse(date) - Date.parse(dateString) < 0) {
-            toastr.error('Sorry, Selected date is in the past');
+        let name = $('#pubName').val();
+        let des = $('[name ="pubDes"]').val();
+        let img = $('[name ="pubImg"]').val();
+        if (des == "" || name == "" || img == "") {
+            toastr.error('Please Fill all Field !!');
             return;
-        }
+        } else {
+            // let dataString = 'name=' + name + '&des=' + des + '&check=' + 'insert'+'&img='+img;
+            let formData = new FormData(this);
+            formData.append('check', 'insert');
+            $.ajax({
+                type: 'POST',
+                // data: dataString,
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                url: 'controllers/publishers.php',
+                success: function (data) {
+                    if (data == 1) {
+                        toastr.success('Form data submitted successfully!');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 2000);
+                    } else if (data == 3) {
+                        toastr.error('Publisher already exists !!');
+                    } else {
+                        toastr.error('Failed !!');
+                    }
 
-        if (date == "") {
-            toastr.error('Sorry, Can not save Data without Issue Date');
-            return;
-        }
-
-        if ($("#select_lan").val() == null) {
-            toastr.error('Sorry, Can not Empty Language');
-            return;
-        }
-
-        let xmlHttp = new XMLHttpRequest();
-        xmlHttp.open('POST', 'controllers/addBook.php', true);
-        xmlHttp.send(new FormData(this));
-        xmlHttp.onreadystatechange = function () {
-            if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-                if (xmlHttp.responseText == '1') {
-                    toastr.success('Form data submitted successfully!');
-                    setTimeout(function () {
-                        location.reload();
-                    }, 2000);
-                } else if (xmlHttp.responseText == '3') {
-                    toastr.error('Sorry, Cannot add twice same book.!');
-                } else {
-                    toastr.error('Sorry, there was an error uploading your file.');
                 }
-            }
-        };
-
+            });
+        }
     });
-    ////End Add Book
+    ////End Publisher
 
-    ////Start View Book
-    $('#view_book').DataTable({
+    ////Start Type
+    $('#view_type').DataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
@@ -595,92 +550,76 @@ if (strlen($_SESSION['login']) == 0) {
         "pageLength": 5,
         "processing": true,
         "serverSide": true,
-        "ajax": "controllers/view_book.php",
+        "ajax": "controllers/view_type.php",
 
-        "columnDefs": [
-            {
-                className: "dt-center",
-                "targets": 4,
-                "data": null,
-                "defaultContent":
-                    "<a id='book_edit' href='#'><i class='fas fa-edit' style='color:#00b44e'></i></a> <a href='#' id='book_dlt'><i class='fas fa-trash-alt' style='color:#a71d2a'></i></a>"
-            }
-        ]
+        "columnDefs": [{
+            "targets": -1,
+            "data": null,
+            "defaultContent":
+                "<center><a id='type_edit' href='#'><i class='fas fa-edit' style='color:#00b44e'></i></a> <a href='#' id='type_dlt'><i class='fas fa-trash-alt' style='color:#a71d2a'></i></a></center>"
+        }]
+
     });
 
-    let book_table = $('#view_book').DataTable();
+    let type_table = $('#view_type').DataTable();
 
-    $('#view_book tbody').on('click', '#book_edit', function () {
-        let data = book_table.row($(this).parents('tr')).data();
-        $('[name ="bookId"]').val(data[0]);
-        $('[name ="bookLink"]').val(data[1]);
-        $('[name ="issue_date"]').val(data[2]);
-        $('#select_lan').val(data[4]).trigger('change');
-        $('#modal-edit-book').modal('show');
+    $('#view_type tbody').on('click', '#type_edit', function () {
+        let data = type_table.row($(this).parents('tr')).data();
+        $('[name ="typeId"]').val(data[0]);
+        $('[name ="typeName"]').val(data[1]);
+        $('#modal-edit-type').modal('show');
     });
 
-    $('#view_book tbody').on('click', '#book_dlt', function () {
-        let data = book_table.row($(this).parents('tr')).data();
-        $('#modal-dlt-book').modal('show');
-        $('[name ="cid"]').val(data[0]);
+    $('#view_type tbody').on('click', '#type_dlt', function () {
+        let data = type_table.row($(this).parents('tr')).data();
+        $('#modal-type-dlt').modal('show');
+        $('[name ="type_id"]').val(data[0]);
     });
-    ////End View Book
 
-    ////Start update Book
-    $('.bookUpdate').on('submit', function (e) {
+    $('.type_update').on('submit', function (e) {
         e.preventDefault();
+        let id = $('[name ="typeId"]').val();
+        let name = $('[name ="typeName"]').val();
 
-        let date = $('[name="issue_date"]').val();
-        var now = new Date();
-        var dateString = moment(now).format('YYYY-MM-DD');
-
-        if (Date.parse(date) - Date.parse(dateString) < 0) {
-            toastr.error('Sorry, Selected date is in the past');
+        if (id == "" || name == "") {
+            toastr.error('Please Fill all Field !!');
             return;
-        }
+        } else {
+            let dataString = 'name=' + name + '&check=' + 'update' + '&id=' + id;
+            $.ajax({
+                type: 'POST',
+                data: dataString,
+                url: 'controllers/type.php',
+                success: function (data) {
+                    if (data == 1) {
+                        $('#modal-edit-pub').modal('hide');
+                        toastr.success('Form data submitted successfully!');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 2000);
+                    } else if (data == 3) {
+                        toastr.error('Type Already exists !!');
+                    } else {
+                        toastr.error('Failed !!');
+                    }
 
-        if (date == "") {
-            toastr.error('Sorry, Can not save Data without Issue Date');
-            return;
-        }
-
-        if ($("#select_lan").val() == null) {
-            toastr.error('Sorry, Can not Empty Language');
-            return;
-        }
-
-        let xmlHttp = new XMLHttpRequest();
-        xmlHttp.open('POST', 'controllers/updateBook.php', true);
-        xmlHttp.send(new FormData(this));
-        xmlHttp.onreadystatechange = function () {
-            if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-                if (xmlHttp.responseText == '1') {
-                    toastr.success('Form data submitted successfully!');
-                    $('#modal-edit-book').modal('hide');
-                    setTimeout(function () {
-                        location.reload();
-                    }, 2000);
-                } else if (xmlHttp.responseText == '3'){
-                    toastr.error('Sorry, Cannot add twice same book.!')
-                }else {
-                    toastr.error('Sorry, there was an error uploading your file.');
                 }
-            }
-        };
+            });
+        }
     });
 
-    $("#dlt_bookbtn").click(function (e) {
+    $("#dlt_type_btn").click(function (e) {
         e.preventDefault();
-        let cid = $('#cid').val();
-        let dataString = 'cid=' + cid;
+        let cid = $('[name ="type_id"]').val();
+        let dataString = 'cid=' + cid + '&check=' + 'delete';
         $.ajax({
             type: 'POST',
             data: dataString,
-            url: 'controllers/updateBook.php',
+            url: 'controllers/type.php',
             success: function (data) {
                 if (data == 1) {
                     toastr.success('Form data Updated successfully!');
-                    $('#modal-dlt-book').modal('hide');
+                    $('#modal-type-dlt').modal('hide');
                     setTimeout(function () {
                         location.reload();
                     }, 2000);
@@ -691,54 +630,71 @@ if (strlen($_SESSION['login']) == 0) {
             }
         });
     });
-    ////End update Book
 
-    ////Start Add PDF
-    $('#PDFAdd').on('submit', function (e) {
+    $('#typeAdd').on('submit', function (e) {
         e.preventDefault();
-        let date = $('[name="issue_date"]').val();
-
-        var now = new Date();
-        var dateString = moment(now).format('YYYY-MM-DD');
-
-        if (Date.parse(date) - Date.parse(dateString) < 0) {
-            toastr.error(date +" "+ dateString);
+        let name = $('#typeName').val();
+        if (name == "") {
+            toastr.error('Please Fill all Field !!');
             return;
-        }
+        } else {
+            let dataString = 'name=' + name + '&check=' + 'insert';
+            $.ajax({
+                type: 'POST',
+                data: dataString,
+                url: 'controllers/type.php',
+                success: function (data) {
+                    if (data == 1) {
+                        toastr.success('Form data submitted successfully!');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 2000);
+                    } else if (data == 3) {
+                        toastr.error('Type already exists !!');
+                    } else {
+                        toastr.error('Failed !!');
+                    }
 
-        if (date == "") {
-            toastr.error('Sorry, Can not save Data without Issue Date');
-            return;
-        }
-
-        if ($("#select_lan").val() == null) {
-            toastr.error('Sorry, Can not Empty Language');
-            return;
-        }
-
-        let xmlHttp = new XMLHttpRequest();
-        xmlHttp.open('POST', 'controllers/addPDF.php', true);
-        xmlHttp.send(new FormData(this));
-        xmlHttp.onreadystatechange = function () {
-            if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-                if (xmlHttp.responseText == '1') {
-                    toastr.success('Form data submitted successfully!');
-                    setTimeout(function () {
-                        location.reload();
-                    }, 2000);
-                } else if (xmlHttp.responseText == '3') {
-                    toastr.error('Sorry, Cannot add twice same PDF.!');
-                } else {
-                    toastr.error('Sorry, there was an error uploading your file.');
                 }
-            }
-        };
-
+            });
+        }
     });
-    ////End Add PDF
+    ////End Type
 
-    ////Start View PDF
-    $('#view_pdf').DataTable({
+    ////Start Add Author
+    $('#authorAdd').on('submit', function (e) {
+        e.preventDefault();
+        let auName = $('#authorName').val();
+        if (auName == "") {
+            alert("Author must be filled out ");
+            toastr.success('Author must be filled out!');
+            return;
+        } else {
+            let xmlHttp = new XMLHttpRequest();
+            xmlHttp.open('POST', 'controllers/authors.php', true);
+            let formData = new FormData(this);
+            formData.append('check', 'insert');
+            xmlHttp.send(formData);
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                    if (xmlHttp.responseText == '1') {
+                        toastr.success('Form data submitted successfully!');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 2000);
+                    } else if (xmlHttp.responseText == '3') {
+                        toastr.error('Author already exists !!');
+                    } else {
+                        toastr.error('Sorry, there was an error uploading your file.');
+                    }
+                }
+            };
+        }
+    });
+    ////End Add Author
+
+    ////start View Author
+    $('#view_author').DataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
@@ -750,92 +706,84 @@ if (strlen($_SESSION['login']) == 0) {
         "pageLength": 5,
         "processing": true,
         "serverSide": true,
-        "ajax": "controllers/view_pdf.php",
+        "ajax": "controllers/view_author.php",
 
         "columnDefs": [
+            {
+                className: "dt-center",
+                "targets": 3,
+                "data": null,
+                "render": function (data, type, JsonResultRow, meta) {
+                    return '<img width="auto" height="40px" src="img/author/' + JsonResultRow[3] + '" rel="' + JsonResultRow[3] + '"/>';
+                }
+            }
+            ,
             {
                 className: "dt-center",
                 "targets": 4,
                 "data": null,
                 "defaultContent":
-                    "<a id='pdf_edit' href='#'><i class='fas fa-edit' style='color:#00b44e'></i></a> <a href='#' id='pdf_dlt'><i class='fas fa-trash-alt' style='color:#a71d2a'></i></a>"
+                    "<a id='author_edit' href='#'><i class='fas fa-edit' style='color:#00b44e'></i></a> <a href='#' id='author_dlt'><i class='fas fa-trash-alt' style='color:#a71d2a'></i></a>"
             }
         ]
+
     });
 
-    let pdf_table = $('#view_pdf').DataTable();
+    let author_table = $('#view_author').DataTable();
 
-    $('#view_pdf tbody').on('click', '#pdf_edit', function () {
-        let data = pdf_table.row($(this).parents('tr')).data();
-        $('[name ="bookId"]').val(data[0]);
-        $('[name ="bookLink"]').val(data[1]);
-        $('[name ="issue_date"]').val(data[2]);
-        $('#select_lan').val(data[4]).trigger('change');
-        $('#modal-edit-pdf').modal('show');
+    $('#view_author tbody').on('click', '#author_edit', function () {
+        let data = author_table.row($(this).parents('tr')).data();
+        $('[name ="AuthorId"]').val(data[0]);
+        $('[name ="AuthorName"]').val(data[1]);
+        $('[name ="authorDes"]').summernote('code', data[2]);
+        $('[name ="imgName"]').text(data[3]);
+        $('#modal-editAuthor').modal('show');
     });
 
-    $('#view_pdf tbody').on('click', '#pdf_dlt', function () {
-        let data = pdf_table.row($(this).parents('tr')).data();
-        $('#modal-dlt-pdf').modal('show');
+    $('#view_author tbody').on('click', '#author_dlt', function () {
+        let data = author_table.row($(this).parents('tr')).data();
+        $('#modal-dlt-author').modal('show');
         $('[name ="cid"]').val(data[0]);
     });
-    ////End View PDF
+    ////End View Author
 
-    ////Start update PDF
-    $('.PDFUpdate').on('submit', function (e) {
+    ////Start Author Update
+    $('.authorUpdate').on('submit', function (e) {
         e.preventDefault();
-
-        let date = $('[name="issue_date"]').val();
-        var now = new Date();
-        var dateString = moment(now).format('YYYY-MM-DD');
-
-        if (Date.parse(date) - Date.parse(dateString) < 0) {
-            toastr.error('Sorry, Selected date is in the past');
-            return;
-        }
-
-        if (date == "") {
-            toastr.error('Sorry, Can not save Data without Issue Date');
-            return;
-        }
-
-        if ($("#select_lan").val() == null) {
-            toastr.error('Sorry, Can not Empty Language');
-            return;
-        }
-
         let xmlHttp = new XMLHttpRequest();
-        xmlHttp.open('POST', 'controllers/updatePDF.php', true);
-        xmlHttp.send(new FormData(this));
+        xmlHttp.open('POST', 'controllers/authors.php', true);
+        let formData = new FormData(this);
+        formData.append('check', 'update');
+        xmlHttp.send(formData);
         xmlHttp.onreadystatechange = function () {
             if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
                 if (xmlHttp.responseText == '1') {
                     toastr.success('Form data submitted successfully!');
-                    $('#modal-edit-pdf').modal('hide');
+                    $('#modal-editAuthor').modal('hide');
                     setTimeout(function () {
                         location.reload();
                     }, 2000);
-                } else if (xmlHttp.responseText == '3'){
-                    toastr.error('Sorry, Cannot add twice same book.!')
-                }else {
+                } else if (xmlHttp.responseText == '3') {
+                    toastr.error('Author already exists !!');
+                } else {
                     toastr.error('Sorry, there was an error uploading your file.');
                 }
             }
         };
     });
 
-    $("#dlt_pdfbtn").click(function (e) {
+    $("#dlt_authorbtn").click(function (e) {
         e.preventDefault();
         let cid = $('#cid').val();
-        let dataString = 'cid=' + cid;
+        let dataString = 'cid=' + cid + '&check=' + 'delete';
         $.ajax({
             type: 'POST',
             data: dataString,
-            url: 'controllers/updatePDF.php',
+            url: 'controllers/authors.php',
             success: function (data) {
                 if (data == 1) {
                     toastr.success('Form data Updated successfully!');
-                    $('#modal-dlt-pdf').modal('hide');
+                    $('#modal-dlt-author').modal('hide');
                     setTimeout(function () {
                         location.reload();
                     }, 2000);
@@ -846,33 +794,7 @@ if (strlen($_SESSION['login']) == 0) {
             }
         });
     });
-    ////End update PDF
-
-    ////Update App Version
-    ////Start update PDF
-    $('#appVersion').on('submit', function (e) {
-        e.preventDefault();
-
-        let cid = $('#appVer').val();
-        let dataString = 'appVer=' + cid;
-        $.ajax({
-            type: 'POST',
-            data: dataString,
-            url: 'controllers/updateApp.php',
-            success: function (data) {
-                if (data == 1) {
-                    toastr.success('Form data Updated successfully!');
-                    setTimeout(function () {
-                        location.reload();
-                    }, 2000);
-                } else {
-                    toastr.error('Failed !!');
-                }
-
-            }
-        });
-    });
-    ////End App Version
+    ////End Author Update
 
 </script>
 </body>

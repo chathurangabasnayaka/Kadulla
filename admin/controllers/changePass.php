@@ -28,4 +28,4 @@ if (strlen($_SESSION['login']) == 0) {
         }
     }
 }
-?>
+
