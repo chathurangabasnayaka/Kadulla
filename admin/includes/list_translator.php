@@ -6,7 +6,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-left">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Manage Author</li>
+                    <li class="breadcrumb-item active">Manage Translator</li>
                     </ol>
                 </div>
             </div>
@@ -19,9 +19,9 @@
             <!-- Description -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Manage Author</h3>
+                    <h3 class="card-title">Manage Translator</h3>
                     <div class="card-tools">
-                        <button type="button" onclick="window.location='index.php?author';" class="btn btn-sm btn-info">Add New Author</button>
+                        <button type="button" onclick="window.location='index.php?translator';" class="btn btn-sm btn-info">Add New Author</button>
                     </div>
                 </div>
 
@@ -101,7 +101,7 @@
             <div class="modal-content bg-danger">
                 <div class="modal-header">
                     <h4 class="modal-title">Delete Translator</h4>
-                    <input id="cid" name="cid" type="hidden" />
+                    <input name="cid" type="hidden" />
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -111,7 +111,7 @@
                 </div>
                 <div class="modal-footer justify-content-end">
                     <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-                    <button type="button" id="dlt_authorbtn" class="btn btn-outline-light">Delete</button>
+                    <button type="button" id="dlt_trans_btn" class="btn btn-outline-light">Delete</button>
                 </div>
             </div>
             <!-- /.modal-content -->

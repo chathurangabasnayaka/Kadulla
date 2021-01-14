@@ -33,6 +33,10 @@
                             <input type="text" id="catsName" class="form-control" placeholder="Enter Category Name">
                         </div>
                         <!-- / textarea -->
+                        <div class="form-group">
+                            <label>Order ID</label>
+                            <input type="text" id="catsOrder" class="form-control" placeholder="Enter Category Order ID">
+                        </div>
                     </div>
 
             </div>

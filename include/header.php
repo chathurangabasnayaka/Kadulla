@@ -13,7 +13,7 @@
                                 <a href="#"><i class="icon-social-pinterest"></i></a>
                             </div>
                             <div class="header-offer-wrap-2">
-                                <p><span>FREE SHIPPING</span> island wide for all orders over Rs2999</p>
+                                <p><span>FREE SHIPPING</span> island wide for all orders over Rs.2999</p>
                             </div>
                         </div>
                     </div>
@@ -21,16 +21,15 @@
                         <div class="header-top-right">
                             <div class="same-style-wrap">
                                 <div class="same-style same-style-mrg-2 track-order">
-                                </div>
-                                <div class="same-style same-style-mrg-2 language-wrap">
-                                    <a class="language-dropdown-active" href="#">English <i class="icon-arrow-down"></i></a>
-                                    <div class="language-dropdown">
-                                        <ul>
-                                            <li><a href="#">English</a></li>
-                                            <li><a href="#">Sinahala</a></li>
-                                            <li><a href="#">Tamil</a></li>
-                                        </ul>
-                                    </div>
+                                    <p>
+                                        <?php
+                                        if ($cus_name != ''){
+                                            echo 'Hi, '.$cus_name .'..' ;
+                                        }else{
+                                            echo '';
+                                        }
+                                    ?>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -50,23 +49,23 @@
                         <div class="categori-search-wrap">
                             <div class="categori-style-1">
                                 <select class="nice-select nice-select-style-1">
-                                    <option>All Categories </option>
-                                    <option>පරිවර්තන</option>
-                                    <option>අයාපන </option>
-                                    <option>ළමා කෘති</option>
-                                    <option>යොවුන් සාහි</option>
-                                    <option>දේශපාලනික</option>
-                                    <option>සෝවියට්/රුසියානු</option>
-                                    <option>කවි</option>
-                                    <option>නවකතා </option>
-                                    <option>ආගමික</option>
-                                    <option>පරිසර</option>
-                                    <option>චරිතාපදාන</option>
+                                    <option>All Categories</option>
+                                    <?php
+//                                    mysqli_set_charset($con, 'utf8');
+                                    $sql = "SELECT * FROM `categories` where is_Active='1'";
+                                    $execute = mysqli_query($con, $sql);
+
+                                    while ($row = mysqli_fetch_array($execute)) {
+                                        $name = $row['name'];
+                                        $id = $row['id'];
+                                        echo "<option value='$id'>$name</option>";
+                                    }
+                                    ?>
                                 </select>
                             </div>
                             <div class="search-wrap-3">
                                 <form action="#">
-                                    <input placeholder="Search Products..." type="text">
+                                    <input placeholder="Search Books..." type="text">
                                     <button><i class="lnr lnr-magnifier"></i></button>
                                 </form>
                             </div>
@@ -75,11 +74,12 @@
                     <div class="col-xl-3 col-lg-3">
                         <div class="header-action header-action-flex">
                             <div class="same-style-2 same-style-2-font-inc">
-                                <a href="login-register.html"><i class="icon-user"></i></a>
+                                <a id="login_check" href="#"><i class="icon-user"></i></a>
+<!--                                href="login-register.php"-->
                             </div>
-                            <div class="same-style-2 same-style-2-font-inc">
-                                <a href="wishlist.html"><i class="icon-heart"></i><span class="pro-count green">03</span></a>
-                            </div>
+<!--                            <div class="same-style-2 same-style-2-font-inc">-->
+<!--                                <a href="wishlist.html"><i class="icon-heart"></i><span class="pro-count green">03</span></a>-->
+<!--                            </div>-->
                             <div class="same-style-2 same-style-2-font-inc header-cart">
                                 <a class="cart-active" href="#">
                                     <i class="icon-basket-loaded"></i><span class="pro-count green">02</span>
@@ -96,22 +96,21 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3">
                         <div class="main-categori-wrap">
-                            <a class="categori-show" href="#"><i class="lnr lnr-menu"></i> All Department <i class="icon-arrow-down icon-right"></i></a>
+                            <a class="categori-show" href="#"><i class="lnr lnr-menu"></i> Top Categories <i class="icon-arrow-down icon-right"></i></a>
                             <div class="category-menu categori-hide">
                                 <nav>
                                     <ul>
-                                        <li class="cr-dropdown"><a href="shop.html">පරිවර්තන </a></li>
-                                        <li class="cr-dropdown"><a href="#">අධ්‍යාපන </a></li>
-                                        <li class="cr-dropdown"><a href="#">ළමා කෘති </a></li>
-                                        <li class="cr-dropdown"><a href="#">යොවුන් සාහිත්‍ය </a></li>
-                                        <li class="cr-dropdown"><a href="shop.html">දේශපාලනික  </a></li>
-                                        <li class="cr-dropdown"><a href="shop.html">සෝවියට්/රුසියානු  </a></li>
-                                        <li class="cr-dropdown"><a href="shop.html">කවි </a></li>
-                                        <li class="cr-dropdown"><a href="shop.html">නවකතා </a></li>
-                                        <li class="cr-dropdown"><a href="shop.html">ආගමික</a></li>
-                                        <li class="cr-dropdown"><a href="shop.html">පරිසර</a></li>
-                                        <li class="cr-dropdown"><a href="shop.html">චරිතාපදාන</a></li>
-                                        <li class="cr-dropdown"><a href="shop.html">වෙනත් </a></li>
+                                        <?php
+
+                                        $sql = "SELECT * FROM `categories` WHERE is_Active='1' AND is_Orderby IS NOT NULL ORDER BY `is_Orderby` ASC LIMIT 12";
+                                        $execute = mysqli_query($con, $sql);
+
+                                        while ($row = mysqli_fetch_array($execute)) {
+                                            $name = $row['name'];
+                                            $id = $row['id'];
+                                            echo "<li class='cr-dropdown'><a href='category-details.php?CID=$id'>$name</a></li>";
+                                        }
+                                        ?>
                                     </ul>
                                 </nav>
                             </div>
@@ -121,9 +120,15 @@
                         <div class="main-menu main-menu-padding-1 main-menu-font-size-14 main-menu-lh-2">
                             <nav>
                                 <ul>
-                                    <li><a href="authors.php">AUTHORS </a> </li>
-                                    <li><a href="shop.html">PUBLISHERS </a></li>
-                                    <li><a href="blog.html">BLOG </a></li>
+                                    <li><a href="book.php">BOOKS </a> </li>
+                                    <li><a>EXPLORE </a>
+                                        <ul class="sub-menu-style">
+                                            <li><a href="authors.php">AUTHORS </a> </li>
+                                            <li><a href="translators.php">TRANSLATORS </a> </li>
+                                            <li><a href="publishers.php">PUBLISHERS </a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="blog.php">BLOG </a></li>
                                     <li><a href="contact.html">CONTACT </a></li>
                                 </ul>
                             </nav>
@@ -151,10 +156,11 @@
                 <div class="col-7">
                     <div class="header-action header-action-flex">
                         <div class="same-style-2 same-style-2-font-inc">
-                            <a href="login-register.html"><i class="icon-user"></i></a>
+<!--                            <a href="login-register.html"><i class="icon-user"></i></a>-->
+                            <p>test</p>
                         </div>
                         <div class="same-style-2 same-style-2-font-inc">
-                            <a href="wishlist.html"><i class="icon-heart"></i><span class="pro-count green">03</span></a>
+<!--                            <a href="wishlist.html"><i class="icon-heart"></i><span class="pro-count green">03</span></a>-->
                         </div>
                         <div class="same-style-2 same-style-2-font-inc header-cart">
                             <a class="cart-active" href="#">

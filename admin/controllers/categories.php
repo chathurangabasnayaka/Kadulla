@@ -9,13 +9,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($check == "insert") {
             $name = mysqli_real_escape_string($con, $_POST["name"]);
+            $orderID = mysqli_real_escape_string($con, $_POST["orderId"]);
 
             $result = mysqli_query($con, "SELECT name FROM categories WHERE name = '$name'");
             $row_count = mysqli_num_rows($result);
             if ($row_count == 1) {
                 echo '3';
             } else {
-                $sql = "INSERT INTO categories (name) VALUES ('$name')";
+                $sql = "INSERT INTO categories (name,is_Orderby) VALUES ('$name','$orderID')";
                 $insert = mysqli_query($con, $sql);
                 if ($insert) {
                     echo '1';
@@ -28,12 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($check == "update") {
             $id = $_POST['id'];
             $name = $_POST['name'];
+            $orderID = mysqli_real_escape_string($con, $_POST["orderId"]);
+
             $result = mysqli_query($con, "SELECT name FROM categories WHERE name = '$name' AND id !='$id' ");
             $row_count = mysqli_num_rows($result);
             if ($row_count == 1) {
                 echo '3';
             } else {
-                $sql = "update categories set name='$name' where id='$id'";
+                $sql = "update categories set name='$name',is_Orderby='$orderID' where id='$id'";
                 $insert = mysqli_query($con, $sql);
                 if ($insert) {
                     echo '1';

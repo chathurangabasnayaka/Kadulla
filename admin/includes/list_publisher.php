@@ -101,7 +101,7 @@
         <div class="modal-dialog">
             <div class="modal-content bg-danger">
                 <div class="modal-header">
-                    <h4 class="modal-title">Delete Client</h4>
+                    <h4 class="modal-title">Delete Publisher</h4>
                     <input name="pubid" type="hidden" />
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

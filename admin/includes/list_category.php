@@ -32,6 +32,7 @@
                             <tr>
                                 <th scope="col" style="width: 50px;text-align: center;">#</th>
                                 <th style="width: 250px;text-align: center;">Name</th>
+                                <th style="width: 50px;text-align: center;">Order ID</th>
                                 <th style="width: 100px;text-align: center;">Action</th>
                             </tr>
                             </thead>
@@ -61,6 +62,10 @@
                                 <input name="catsId" type="hidden">
                                 <input type="text" name="catsName" class="form-control">
                             </div>
+                            <div class="form-group">
+                                <label>Order ID</label>
+                                <input type="text" id="catsOrder" class="form-control" placeholder="Enter Category Order ID">
+                            </div>
                         </div>
 
                 </div>
@@ -78,7 +83,7 @@
         <div class="modal-dialog">
             <div class="modal-content bg-danger">
                 <div class="modal-header">
-                    <h4 class="modal-title">Delete Client</h4>
+                    <h4 class="modal-title">Delete Category</h4>
                     <input id="cid" name="cid" type="hidden" />
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

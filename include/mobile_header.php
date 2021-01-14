@@ -15,47 +15,36 @@
                 <!-- mobile menu start -->
                 <nav>
                     <ul class="mobile-menu">
-                        <li class="menu-item-has-children"><a href="index.html">Home</a></li>
-                        <li class="menu-item-has-children "><a href="#">shop</a></li>
-                        <li class="menu-item-has-children "><a href="#">Blog</a></li>
-                        <li><a href="contact.html">Contact us</a></li>
+                        <li class="menu-item-has-children"><a href="authors.php">AUTHORS</a></li>
+                        <li class="menu-item-has-children "><a href="authors.php">TRANSLATORS </a></li>
+                        <li class="menu-item-has-children "><a href="Publishers.php">PUBLISHERS </a></li>
+                        <li><a href="blog.php">BLOG </a></li>
+                        <li><a href="contact.html">CONTACT </a></li>
                     </ul>
                 </nav>
                 <!-- mobile menu end -->
             </div>
             <div class="main-categori-wrap mobile-menu-wrap mobile-header-padding-border-3">
                 <a class="categori-show" href="#">
-                    <i class="lnr lnr-menu"></i> All Department <i class="icon-arrow-down icon-right"></i>
+                    <i class="lnr lnr-menu"></i> Top Categories <i class="icon-arrow-down icon-right"></i>
                 </a>
                 <div class="categori-hide-2">
                     <nav>
                         <ul class="mobile-menu">
-                            <li class="menu-item-has-children "><a href="#">Clothing </a></li>
-                            <li class="menu-item-has-children "><a href="#">Women</a></li>
-                            <li class="menu-item-has-children "><a href="#">Men </a></li>
-                            <li class="menu-item-has-children "><a href="#">Baby Girl </a></li>
-                            <li><a href="shop.html">Baby Boy </a></li>
-                            <li><a href="shop.html">Accessories </a></li>
-                            <li><a href="shop.html">Shoes </a></li>
-                            <li><a href="shop.html">Shirt </a></li>
-                            <li><a href="shop.html">T-Shirt </a></li>
-                            <li><a href="shop.html">Coat </a></li>
-                            <li><a href="shop.html">Jeans </a></li>
-                            <li><a href="shop.html">Collection </a></li>
+                            <?php
+
+                            $sql = "SELECT * FROM `categories` WHERE is_Active='1' AND is_Orderby IS NOT NULL ORDER BY `is_Orderby` ASC LIMIT 12";
+                            //                                        mysqli_set_charset($con, 'utf8');
+                            $execute = mysqli_query($con, $sql);
+
+                            while ($row = mysqli_fetch_array($execute)) {
+                                $name = $row['name'];
+                                $id = $row['id'];
+                                echo "<li class='menu-item-has-children'><a href='$id'>$name</a></li>";
+                            }
+                            ?>
                         </ul>
                     </nav>
-                </div>
-            </div>
-            <div class="mobile-header-info-wrap mobile-header-padding-border-3">
-                <div class="single-mobile-header-info">
-                    <a class="mobile-language-active" href="#">Language <span><i class="icon-arrow-down"></i></span></a>
-                    <div class="lang-curr-dropdown lang-dropdown-active">
-                        <ul>
-                            <li><a href="#">Sinhala</a></li>
-                            <li><a href="#">Tamil</a></li>
-                            <li><a href="#">English</a></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
             <div class="mobile-contact-info mobile-header-padding-border-4">

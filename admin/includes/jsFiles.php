@@ -30,6 +30,7 @@
 <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- Summernote -->
 <script src="plugins/summernote/summernote-bs4.min.js"></script>
+<script type="text/javascript" src="../assets/img_upld/image-uploader.min.js"></script>
 <script>
     //Timepicker
     $('#timepicker').datetimepicker({
@@ -56,6 +57,9 @@
         $('a[href="'+url+'"]').parents('.has-treeview').addClass("menu-open");
         $('a[href="'+url+'"]').parents('.nav-item').addClass("menu-open");
         // $('a[href="'+url+'"]').parents('.nav-treeview').attr("display","block");
+
+    ///Image Upload
+    let uploader = $('.input-images-1').imageUploader();
 
 </script>
 

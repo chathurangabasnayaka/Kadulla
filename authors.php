@@ -1,15 +1,17 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
-
+<?php
+include('include/db.php');
+?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Norda - Minimal eCommerce HTML Template</title>
+    <title>Authors - Kadulla Book Publishers</title>
     <meta name="robots" content="noindex, follow"/>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.jpeg">
 
     <!-- All CSS is here
 	============================================ -->
@@ -20,10 +22,153 @@
 <body>
 
 <div class="main-wrapper">
-    <?php include 'include/header.php' ?>
+    <header class="header-area">
+        <div class="container">
+            <div class="header-large-device">
+                <div class="header-top header-top-ptb-1 border-bottom-1">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="header-offer-wrap">
+                                <p><i class="icon-paper-plane"></i> FREE SHIPPING world wide for all orders over <span>$199</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="header-top-right">
+                                <div class="social-style-1 social-style-1-mrg">
+                                    <a href="#"><i class="icon-social-twitter"></i></a>
+                                    <a href="#"><i class="icon-social-facebook"></i></a>
+                                    <a href="#"><i class="icon-social-instagram"></i></a>
+                                    <a href="#"><i class="icon-social-youtube"></i></a>
+                                    <a href="#"><i class="icon-social-pinterest"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-bottom">
+                    <div class="row align-items-center">
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo">
+                                <a href="index.php"><img src="assets/images/logo/logo.png" alt="logo"></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="main-menu main-menu-padding-1 main-menu-lh-1">
+                                <nav>
+                                    <ul>
+                                        <?php include_once 'include/header_link.php' ?>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3">
+                            <div class="header-action header-action-flex header-action-mrg-right">
+                                <div class="same-style-2 header-search-1">
+                                    <a class="search-toggle" href="#">
+                                        <i class="icon-magnifier s-open"></i>
+                                        <i class="icon_close s-close"></i>
+                                    </a>
+                                    <div class="search-wrap-1">
+                                        <form action="#">
+                                            <input placeholder="Search products…" type="text">
+                                            <button class="button-search"><i class="icon-magnifier"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="same-style-2">
+                                    <a href="login-register.php"><i class="icon-user"></i></a>
+                                </div>
+                                <div class="same-style-2">
+                                    <a href="wishlist.html"><i class="icon-heart"></i><span
+                                                class="pro-count red">03</span></a>
+                                </div>
+                                <div class="same-style-2 header-cart">
+                                    <a class="cart-active" href="#">
+                                        <i class="icon-basket-loaded"></i><span class="pro-count red">02</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-small-device small-device-ptb-1">
+                <div class="row align-items-center">
+                    <div class="col-5">
+                        <div class="mobile-logo">
+                            <a href="index.php">
+                                <img alt="" src="assets/images/logo/logo.png">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <div class="header-action header-action-flex">
+                            <div class="same-style-2">
+                                <a href="login-register.php"><i class="icon-user"></i></a>
+                            </div>
+                            <div class="same-style-2">
+                                <a href="wishlist.html"><i class="icon-heart"></i><span class="pro-count red">03</span></a>
+                            </div>
+                            <div class="same-style-2 header-cart">
+                                <a class="cart-active" href="#">
+                                    <i class="icon-basket-loaded"></i><span class="pro-count red">02</span>
+                                </a>
+                            </div>
+                            <div class="same-style-2 main-menu-icon">
+                                <a class="mobile-header-button-active" href="#"><i class="icon-menu"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <!-- Mobile menu start -->
-    <?php include 'include/mobile_header.php' ?>
+    <div class="mobile-header-active mobile-header-wrapper-style">
+        <div class="clickalbe-sidebar-wrap">
+            <a class="sidebar-close"><i class="icon_close"></i></a>
+            <div class="mobile-header-content-area">
+                <div class="header-offer-wrap mobile-header-padding-border-4">
+                    <p><i class="icon-paper-plane"></i> FREE SHIPPING world wide for all orders over <span>$199</span>
+                    </p>
+                </div>
+                <div class="mobile-search mobile-header-padding-border-1">
+                    <form class="search-form" action="#">
+                        <input type="text" placeholder="Search here…">
+                        <button class="button-search"><i class="icon-magnifier"></i></button>
+                    </form>
+                </div>
+                <div class="mobile-menu-wrap mobile-header-padding-border-2">
+                    <!-- mobile menu start -->
+                    <nav>
+                        <ul class="mobile-menu">
+                            <li><a href="index.php">HOME </a></li>
+                            <li><a href="authors.php">AUTHORS </a></li>
+                            <li><a href="Publishers.php">PUBLISHERS </a></li>
+                            <li><a href="blog.php">BLOG </a></li>
+                            <li><a href="contact.php">CONTACT </a></li>
+                        </ul>
+                    </nav>
+                    <!-- mobile menu end -->
+                </div>
+                <div class="mobile-contact-info mobile-header-padding-border-4">
+                    <ul>
+                        <li><i class="icon-phone "></i> (+612) 2531 5600</li>
+                        <li><i class="icon-envelope-open "></i> norda@domain.com</li>
+                        <li><i class="icon-home"></i> PO Box 1622 Colins Street West Australia</li>
+                    </ul>
+                </div>
+                <div class="mobile-social-icon">
+                    <a class="facebook" href="#"><i class="icon-social-facebook"></i></a>
+                    <a class="twitter" href="#"><i class="icon-social-twitter"></i></a>
+                    <a class="pinterest" href="#"><i class="icon-social-pinterest"></i></a>
+                    <a class="instagram" href="#"><i class="icon-social-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- mini cart start -->
     <div class="sidebar-cart-active">
@@ -72,40 +217,66 @@
             <div class="breadcrumb-content text-center">
                 <ul>
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
-                    <li class="active">Shop Fullwide</li>
+                    <li class="active">Authors</li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="shop-area pt-120 pb-120 section-padding-2">
+    <?php
+    $result_count = mysqli_query($con, "SELECT COUNT(id) FROM `author` where isActive='1'");
+    $row_count = mysqli_fetch_row($result_count);
+    $total_records = $row_count[0];
+    ?>
+    <div class="shop-area pt-20 pb-120 section-padding-2">
         <div class="container-fluid">
             <div class="row flex-row-reverse">
-                <div class="col-lg-9">
+                <div class="col-lg-12">
                     <div class="shop-topbar-wrapper">
                         <div class="shop-topbar-left">
                             <div class="view-mode nav">
                                 <a class="active" href="#shop-1" data-toggle="tab"><i class="icon-grid"></i></a>
                                 <a href="#shop-2" data-toggle="tab"><i class="icon-menu"></i></a>
                             </div>
-                            <p>Showing 1 - 20 of 30 results </p>
+                            <p>Showing 1 - <?php
+                                if (isset($_GET["lim"])) {
+                                    echo $_GET["lim"];
+                                } else {
+                                    echo '12';
+                                }
+                                ?> of <?php echo $total_records ?> results </p>
                         </div>
                         <div class="product-sorting-wrapper">
                             <div class="product-shorting shorting-style">
                                 <label>View :</label>
-                                <select>
-                                    <option value=""> 20</option>
-                                    <option value=""> 23</option>
-                                    <option value=""> 30</option>
+                                <select id="limit">
+                                    <option value="12" <?php if (isset($_GET["lim"]) && $_GET["lim"] == 12) {
+                                        echo 'selected';
+                                    } ?> >12
+                                    </option>
+                                    <option value="24" <?php if (isset($_GET["lim"]) && $_GET["lim"] == 24) {
+                                        echo 'selected';
+                                    } ?> >24
+                                    </option>
+                                    <option value="36" <?php if (isset($_GET["lim"]) && $_GET["lim"] == 36) {
+                                        echo 'selected';
+                                    } ?> >36
+                                    </option>
                                 </select>
                             </div>
                             <div class="product-show shorting-style">
                                 <label>Sort by :</label>
-                                <select>
-                                    <option value="">Default</option>
-                                    <option value=""> Name</option>
-                                    <option value=""> price</option>
+                                <select id="filter">
+                                    <option value="id" <?php if (isset($_GET["filter"]) && $_GET["filter"] == 'id') {
+                                        echo 'selected';
+                                    } ?>>Default</option>
+                                    <option value="name" <?php if (isset($_GET["filter"]) && $_GET["filter"] == 'name') {
+                                        echo 'selected';
+                                    } ?>> Name</option>
+                                    <option value="id" <?php if (isset($_GET["filter"]) && $_GET["filter"] == 'id') {
+                                        echo 'selected';
+                                    } ?>> ID</option>
                                 </select>
                             </div>
                         </div>
@@ -114,837 +285,145 @@
                         <div class="tab-content jump">
                             <div id="shop-1" class="tab-pane active">
                                 <div class="row">
-                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                                        <div class="single-product-wrap mb-35">
-                                            <div class="product-img product-img-zoom mb-15">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-13.jpg" alt="">
-                                                </a>
-                                                <div class="product-action-2 tooltip-style-2">
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
+
+                                    <?php
+
+                                    $selectedOption = "id";
+                                    $selectedOption_qry = "";
+                                    if (isset($_GET["filter"])) {
+                                        $selectedOption = $_GET["filter"];
+                                        $selectedOption_qry = "&filter=" . $_GET["filter"];
+                                    }
+
+                                    $qry = "";
+                                    $limit = 12;
+                                    $limit_qry = "";
+                                    if (isset($_GET["lim"])) {
+                                        $limit = $_GET["lim"];
+                                        $limit_qry = "&lim=" . $_GET["lim"];
+                                    }
+
+                                    $page = "";
+                                    if (isset($_GET["page"])) {
+                                        $page = $_GET["page"];
+                                        $qry .= "&page=" . $_GET["page"];
+                                    } else {
+                                        $page = 1;
+                                    };
+
+
+                                    $start_from = ($page - 1) * $limit;
+
+                                    $sql = "SELECT * FROM `author` WHERE `isActive`='1' ORDER BY (" . $selectedOption . ") ASC LIMIT $start_from, $limit";
+                                    $run_sql = mysqli_query($con, $sql);
+
+                                    while ($row_run_sql = mysqli_fetch_array($run_sql)) {
+                                        $id = $row_run_sql['id'];
+                                        $name = $row_run_sql['name'];
+                                        $des = $row_run_sql['descript'];
+                                        $img = $row_run_sql['img'];
+
+                                        ?>
+
+                                        <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12">
+                                            <div class="single-product-wrap mb-35">
+                                                <div class="product-img product-img-zoom mb-15">
+                                                    <a href="author-details2.php?aid=<?php echo $id ?>">
+                                                        <img src="admin/img/author/<?php echo $img; ?>" alt="">
+                                                    </a>
                                                 </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 text-center"><h3><a
-                                                            href="product-details.html">Taraka Vipulaguna</a></h3>
-                                            </div>
-                                            <div class="product-content-wrap-2 product-content-position text-center">
-                                                <h3><a href="product-details.html">Taraka Vipulaguna</a></h3>
-                                                <div class="pro-add-to-cart">
-                                                    <button title="Add to Cart">View Books</button>
+                                                <div class="product-content-wrap-2 text-center"><h3><a
+                                                                href="#"><?php echo $name ?></a></h3>
+                                                </div>
+                                                <div class="product-content-wrap-2 product-content-position text-center">
+                                                    <h3>
+                                                        <a href="author-details.php?aid=<?php echo $id ?>"><?php echo $name ?></a>
+                                                    </h3>
+                                                    <div class="pro-add-to-cart">
+                                                        <button onclick="window.location.href='author-details.php?aid=<?php echo $id ?>'"
+                                                                title="Author Details">Details
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                                        <div class="single-product-wrap mb-35">
-                                            <div class="product-img product-img-zoom mb-15">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-14.jpg" alt="">
-                                                </a>
-                                                <span class="pro-badge left bg-red">-20%</span>
-                                                <div class="product-action-2 tooltip-style-2">
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                    </div>
-                                                    <span>(5)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Make Thing Happen T-Shirt</a></h3>
-                                                <div class="product-price-2">
-                                                    <span class="new-price">$35.45</span>
-                                                    <span class="old-price">$45.80</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 product-content-position text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                    </div>
-                                                    <span>(5)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Make Thing Happen T-Shirt</a></h3>
-                                                <div class="product-price-2">
-                                                    <span class="new-price">$35.45</span>
-                                                    <span class="old-price">$45.80</span>
-                                                </div>
-                                                <div class="pro-add-to-cart">
-                                                    <button title="Add to Cart">Add To Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                                        <div class="single-product-wrap mb-35">
-                                            <div class="product-img product-img-zoom mb-15">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-15.jpg" alt="">
-                                                </a>
-                                                <div class="product-action-2 tooltip-style-2">
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                    </div>
-                                                    <span>(4)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Basic White Simple Sneaker</a></h3>
-                                                <div class="product-price-2">
-                                                    <span>$35.45</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 product-content-position text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                    </div>
-                                                    <span>(4)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Basic White Simple Sneaker</a></h3>
-                                                <div class="product-price-2">
-                                                    <span>$35.45</span>
-                                                </div>
-                                                <div class="pro-add-to-cart">
-                                                    <button title="Add to Cart">Add To Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                                        <div class="single-product-wrap mb-35">
-                                            <div class="product-img product-img-zoom mb-15">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-16.jpg" alt="">
-                                                </a>
-                                                <div class="product-action-2 tooltip-style-2">
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(3)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Simple Rounded Sunglasses</a></h3>
-                                                <div class="product-price-2">
-                                                    <span>$45.50</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 product-content-position text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(3)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Simple Rounded Sunglasses</a></h3>
-                                                <div class="product-price-2">
-                                                    <span>$45.50</span>
-                                                </div>
-                                                <div class="pro-add-to-cart">
-                                                    <button title="Add to Cart">Add To Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                                        <div class="single-product-wrap mb-35">
-                                            <div class="product-img product-img-zoom mb-15">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-17.jpg" alt="">
-                                                </a>
-                                                <span class="pro-badge left bg-red">-20%</span>
-                                                <div class="product-action-2 tooltip-style-2">
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(5)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Vintage Socks X3</a></h3>
-                                                <div class="product-price-2">
-                                                    <span class="new-price">$35.45</span>
-                                                    <span class="old-price">$45.80</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 product-content-position text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(5)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Vintage Socks X3</a></h3>
-                                                <div class="product-price-2">
-                                                    <span class="new-price">$35.45</span>
-                                                    <span class="old-price">$45.80</span>
-                                                </div>
-                                                <div class="pro-add-to-cart">
-                                                    <button title="Add to Cart">Add To Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                                        <div class="single-product-wrap mb-35">
-                                            <div class="product-img product-img-zoom mb-15">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-18.jpg" alt="">
-                                                </a>
-                                                <div class="product-action-2 tooltip-style-2">
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(3)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Tie-up Sute Sandals</a></h3>
-                                                <div class="product-price-2">
-                                                    <span>$55.50</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 product-content-position text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(3)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Tie-up Sute Sandals</a></h3>
-                                                <div class="product-price-2">
-                                                    <span>$55.50</span>
-                                                </div>
-                                                <div class="pro-add-to-cart">
-                                                    <button title="Add to Cart">Add To Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                                        <div class="single-product-wrap mb-35">
-                                            <div class="product-img product-img-zoom mb-15">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-19.jpg" alt="">
-                                                </a>
-                                                <div class="product-action-2 tooltip-style-2">
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                    </div>
-                                                    <span>(5)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Faded Grey T-Shirt</a></h3>
-                                                <div class="product-price-2">
-                                                    <span>$65.50</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 product-content-position text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                    </div>
-                                                    <span>(5)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Faded Grey T-Shirt</a></h3>
-                                                <div class="product-price-2">
-                                                    <span>$65.50</span>
-                                                </div>
-                                                <div class="pro-add-to-cart">
-                                                    <button title="Add to Cart">Add To Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                                        <div class="single-product-wrap mb-35">
-                                            <div class="product-img product-img-zoom mb-15">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-20.jpg" alt="">
-                                                </a>
-                                                <div class="product-action-2 tooltip-style-2">
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(2)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Snakeskin print belt</a></h3>
-                                                <div class="product-price-2">
-                                                    <span>$75.50</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 product-content-position text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(2)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Snakeskin print belt</a></h3>
-                                                <div class="product-price-2">
-                                                    <span>$75.50</span>
-                                                </div>
-                                                <div class="pro-add-to-cart">
-                                                    <button title="Add to Cart">Add To Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                                        <div class="single-product-wrap mb-35">
-                                            <div class="product-img product-img-zoom mb-15">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-95.jpg" alt="">
-                                                </a>
-                                                <div class="product-action-2 tooltip-style-2">
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(2)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Simple Black T-Shirt</a></h3>
-                                                <div class="product-price-2">
-                                                    <span>$20.50</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 product-content-position text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(2)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Simple Black T-Shirt</a></h3>
-                                                <div class="product-price-2">
-                                                    <span>$20.50</span>
-                                                </div>
-                                                <div class="pro-add-to-cart">
-                                                    <button title="Add to Cart">Add To Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                                        <div class="single-product-wrap mb-35">
-                                            <div class="product-img product-img-zoom mb-15">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-96.jpg" alt="">
-                                                </a>
-                                                <span class="pro-badge left bg-red">-20%</span>
-                                                <div class="product-action-2 tooltip-style-2">
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                    </div>
-                                                    <span>(5)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Norda Simple Backpack</a></h3>
-                                                <div class="product-price-2">
-                                                    <span class="new-price">$35.45</span>
-                                                    <span class="old-price">$45.80</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 product-content-position text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                    </div>
-                                                    <span>(5)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Norda Simple Backpack</a></h3>
-                                                <div class="product-price-2">
-                                                    <span class="new-price">$35.45</span>
-                                                    <span class="old-price">$45.80</span>
-                                                </div>
-                                                <div class="pro-add-to-cart">
-                                                    <button title="Add to Cart">Add To Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                                        <div class="single-product-wrap mb-35">
-                                            <div class="product-img product-img-zoom mb-15">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-97.jpg" alt="">
-                                                </a>
-                                                <div class="product-action-2 tooltip-style-2">
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                    </div>
-                                                    <span>(4)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Simple Blue T-Shirt</a></h3>
-                                                <div class="product-price-2">
-                                                    <span>$35.45</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 product-content-position text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                    </div>
-                                                    <span>(4)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Simple Blue T-Shirt</a></h3>
-                                                <div class="product-price-2">
-                                                    <span>$35.45</span>
-                                                </div>
-                                                <div class="pro-add-to-cart">
-                                                    <button title="Add to Cart">Add To Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                                        <div class="single-product-wrap mb-35">
-                                            <div class="product-img product-img-zoom mb-15">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-99.jpg" alt="">
-                                                </a>
-                                                <div class="product-action-2 tooltip-style-2">
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(3)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Basic Sneaker</a></h3>
-                                                <div class="product-price-2">
-                                                    <span>$45.50</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap-2 product-content-position text-center">
-                                                <div class="product-rating-wrap">
-                                                    <div class="product-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(3)</span>
-                                                </div>
-                                                <h3><a href="product-details.html">Basic Sneaker</a></h3>
-                                                <div class="product-price-2">
-                                                    <span>$45.50</span>
-                                                </div>
-                                                <div class="pro-add-to-cart">
-                                                    <button title="Add to Cart">Add To Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?php } ?>
+
                                 </div>
                             </div>
                             <div id="shop-2" class="tab-pane">
-                                <div class="shop-list-wrap mb-30">
-                                    <div class="row">
-                                        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-6">
-                                            <div class="product-list-img">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-13.jpg" alt="Product Style">
-                                                </a>
-                                                <div class="product-list-quickview">
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
+                                <?php
+                                $sql = "SELECT * FROM `author` WHERE `isActive`='1' ORDER BY (" . $selectedOption . ") ASC LIMIT $start_from, $limit";
+                                $run_sql = mysqli_query($con, $sql);
+
+                                while ($row_run_sql = mysqli_fetch_array($run_sql)) {
+                                    $id = $row_run_sql['id'];
+                                    $name = $row_run_sql['name'];
+                                    $des = $row_run_sql['description'];
+                                    $img = $row_run_sql['img'];
+
+                                    ?>
+                                    <div class="shop-list-wrap mb-30">
+                                        <div class="row">
+                                            <div class="col-xl-4 col-lg-5 col-md-6 col-sm-6">
+                                                <div class="product-list-img">
+                                                    <a href="<?php echo $id ?>">
+                                                        <img src="admin/img/author/<?php echo $img; ?>"
+                                                             alt="Product Style">
+                                                    </a>
+                                                    <div class="product-list-quickview">
+                                                        <button title="Quick View" data-toggle="modal"
+                                                                data-target="#exampleModal"><i
+                                                                    class="icon-size-fullscreen icons"></i></button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-8 col-lg-7 col-md-6 col-sm-6">
-                                            <div class="shop-list-content">
-                                                <h3><a href="product-details.html">Basic Joggin Shorts</a></h3>
-                                                <div class="pro-list-price">
-                                                    <span class="new-price">$35.45</span>
-                                                    <span class="old-price">$45.80</span>
-                                                </div>
-                                                <div class="product-list-rating-wrap">
-                                                    <div class="product-list-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(3)</span>
-                                                </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipic it, sed do eiusmod
-                                                    tempor labor incididunt ut et dolore magna aliqua. Ut enim ad minim
-                                                    veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip.</p>
-                                                <div class="product-list-action">
-                                                    <button title="Add To Cart"><i class="icon-basket-loaded"></i>
-                                                    </button>
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
+                                            <div class="col-xl-8 col-lg-7 col-md-6 col-sm-6">
+                                                <div class="shop-list-content">
+                                                    <h3><a href="<?php echo $id ?>"><?php echo $name ?></a></h3>
+                                                    <p><?php echo $des ?></p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="shop-list-wrap mb-30">
-                                    <div class="row">
-                                        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-6">
-                                            <div class="product-list-img">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-14.jpg" alt="Product Style">
-                                                </a>
-                                                <div class="product-list-quickview">
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-8 col-lg-7 col-md-6 col-sm-6">
-                                            <div class="shop-list-content">
-                                                <h3><a href="product-details.html">Make Thing Happen T-Shirt</a></h3>
-                                                <div class="pro-list-price">
-                                                    <span class="new-price">$35.45</span>
-                                                    <span class="old-price">$45.80</span>
-                                                </div>
-                                                <div class="product-list-rating-wrap">
-                                                    <div class="product-list-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(3)</span>
-                                                </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipic it, sed do eiusmod
-                                                    tempor labor incididunt ut et dolore magna aliqua. Ut enim ad minim
-                                                    veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip.</p>
-                                                <div class="product-list-action">
-                                                    <button title="Add To Cart"><i class="icon-basket-loaded"></i>
-                                                    </button>
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="shop-list-wrap mb-30">
-                                    <div class="row">
-                                        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-6">
-                                            <div class="product-list-img">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-15.jpg" alt="Product Style">
-                                                </a>
-                                                <div class="product-list-quickview">
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-8 col-lg-7 col-md-6 col-sm-6">
-                                            <div class="shop-list-content">
-                                                <h3><a href="product-details.html">Basic White Simple Sneaker</a></h3>
-                                                <div class="pro-list-price">
-                                                    <span class="new-price">$35.45</span>
-                                                    <span class="old-price">$45.80</span>
-                                                </div>
-                                                <div class="product-list-rating-wrap">
-                                                    <div class="product-list-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(3)</span>
-                                                </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipic it, sed do eiusmod
-                                                    tempor labor incididunt ut et dolore magna aliqua. Ut enim ad minim
-                                                    veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip.</p>
-                                                <div class="product-list-action">
-                                                    <button title="Add To Cart"><i class="icon-basket-loaded"></i>
-                                                    </button>
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="shop-list-wrap mb-30">
-                                    <div class="row">
-                                        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-6">
-                                            <div class="product-list-img">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-16.jpg" alt="Product Style">
-                                                </a>
-                                                <div class="product-list-quickview">
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-8 col-lg-7 col-md-6 col-sm-6">
-                                            <div class="shop-list-content">
-                                                <h3><a href="product-details.html">Simple Rounded Sunglasses</a></h3>
-                                                <div class="pro-list-price">
-                                                    <span class="new-price">$35.45</span>
-                                                    <span class="old-price">$45.80</span>
-                                                </div>
-                                                <div class="product-list-rating-wrap">
-                                                    <div class="product-list-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(3)</span>
-                                                </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipic it, sed do eiusmod
-                                                    tempor labor incididunt ut et dolore magna aliqua. Ut enim ad minim
-                                                    veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip.</p>
-                                                <div class="product-list-action">
-                                                    <button title="Add To Cart"><i class="icon-basket-loaded"></i>
-                                                    </button>
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="shop-list-wrap mb-30">
-                                    <div class="row">
-                                        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-6">
-                                            <div class="product-list-img">
-                                                <a href="product-details.html">
-                                                    <img src="assets/images/product/product-17.jpg" alt="Product Style">
-                                                </a>
-                                                <div class="product-list-quickview">
-                                                    <button title="Quick View" data-toggle="modal"
-                                                            data-target="#exampleModal"><i
-                                                                class="icon-size-fullscreen icons"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-8 col-lg-7 col-md-6 col-sm-6">
-                                            <div class="shop-list-content">
-                                                <h3><a href="product-details.html">Vintage Socks X3</a></h3>
-                                                <div class="pro-list-price">
-                                                    <span class="new-price">$35.45</span>
-                                                    <span class="old-price">$45.80</span>
-                                                </div>
-                                                <div class="product-list-rating-wrap">
-                                                    <div class="product-list-rating">
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star"></i>
-                                                        <i class="icon_star gray"></i>
-                                                        <i class="icon_star gray"></i>
-                                                    </div>
-                                                    <span>(3)</span>
-                                                </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipic it, sed do eiusmod
-                                                    tempor labor incididunt ut et dolore magna aliqua. Ut enim ad minim
-                                                    veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip.</p>
-                                                <div class="product-list-action">
-                                                    <button title="Add To Cart"><i class="icon-basket-loaded"></i>
-                                                    </button>
-                                                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                    <button title="Compare"><i class="icon-refresh"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php } ?>
+
                             </div>
                         </div>
                         <div class="pro-pagination-style text-center mt-10">
                             <ul>
-                                <li><a class="prev" href="#"><i class="icon-arrow-left"></i></a></li>
-                                <li><a class="active" href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a class="next" href="#"><i class="icon-arrow-right"></i></a></li>
+                                <?php
+                                if ((int)$page != 1) {
+                                    ?>
+                                    <li><a class="prev"
+                                           href='authors.php?page=<?php echo ((int)$page) - 1 ?><?php echo $limit_qry.$selectedOption_qry ?>'><i
+                                                    class="icon-arrow-left"></i></a></li>
+                                    <?php
+                                }
+
+                                ?>
+
+                                <?php
+                                $result_db = mysqli_query($con, "SELECT COUNT(id) FROM `author` where isActive='1'");
+                                $row_db = mysqli_fetch_row($result_db);
+                                $total_records = $row_db[0];
+                                $total_pages = ceil($total_records / $limit);
+                                /* echo  $total_pages; */
+                                for ($i = 1; $i <= $total_pages; $i++) {
+                                    $pagLink = "<li><a href='authors.php?page=" . $i . $limit_qry .$selectedOption_qry. "'>" . $i . "</a></li>";
+                                    echo $pagLink;
+                                }
+
+                                if ((int)$page != (int)$total_pages) {
+                                    ?>
+                                    <li><a class="next"
+                                           href='authors.php?page=<?php echo ((int)$page) + 1 ?><?php echo $limit_qry.$selectedOption_qry ?>'><i
+                                                    class="icon-arrow-right"></i></a></li>
+                                    <?php
+                                }
+
+                                ?>
+
                             </ul>
                         </div>
                     </div>
@@ -952,178 +431,23 @@
             </div>
         </div>
     </div>
-    <div class="subscribe-area bg-gray pt-115 pb-115">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-md-5">
-                    <div class="section-title">
-                        <h2>keep connected</h2>
-                        <p>Get updates by subscribe our weekly newsletter</p>
-                    </div>
-                </div>
-                <div class="col-lg-7 col-md-7">
-                    <div id="mc_embed_signup" class="subscribe-form">
-                        <form id="mc-embedded-subscribe-form" class="validate subscribe-form-style" novalidate=""
-                              target="_blank" name="mc-embedded-subscribe-form" method="post"
-                              action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef">
-                            <div id="mc_embed_signup_scroll" class="mc-form">
-                                <input class="email" type="email" required="" placeholder="Enter your email address"
-                                       name="EMAIL" value="">
-                                <div class="mc-news" aria-hidden="true">
-                                    <input type="text" value="" tabindex="-1"
-                                           name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef">
-                                </div>
-                                <div class="clear">
-                                    <input id="mc-embedded-subscribe" class="button" type="submit" name="subscribe"
-                                           value="Subscribe">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
+    <?php include 'include/subscribe_area.php' ?>
     <?php include 'include/footer.php' ?>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">x</span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-5 col-md-6 col-12 col-sm-12">
-                            <div class="tab-content quickview-big-img">
-                                <div id="pro-1" class="tab-pane fade show active">
-                                    <img src="assets/images/product/product-1.jpg" alt="">
-                                </div>
-                                <div id="pro-2" class="tab-pane fade">
-                                    <img src="assets/images/product/product-3.jpg" alt="">
-                                </div>
-                                <div id="pro-3" class="tab-pane fade">
-                                    <img src="assets/images/product/product-6.jpg" alt="">
-                                </div>
-                                <div id="pro-4" class="tab-pane fade">
-                                    <img src="assets/images/product/product-3.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="quickview-wrap mt-15">
-                                <div class="quickview-slide-active nav-style-6">
-                                    <a class="active" data-toggle="tab" href="#pro-1"><img
-                                                src="assets/images/product/quickview-s1.jpg" alt=""></a>
-                                    <a data-toggle="tab" href="#pro-2"><img src="assets/images/product/quickview-s2.jpg"
-                                                                            alt=""></a>
-                                    <a data-toggle="tab" href="#pro-3"><img src="assets/images/product/quickview-s3.jpg"
-                                                                            alt=""></a>
-                                    <a data-toggle="tab" href="#pro-4"><img src="assets/images/product/quickview-s2.jpg"
-                                                                            alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-7 col-md-6 col-12 col-sm-12">
-                            <div class="product-details-content quickview-content">
-                                <h2>Simple Black T-Shirt</h2>
-                                <div class="product-ratting-review-wrap">
-                                    <div class="product-ratting-digit-wrap">
-                                        <div class="product-ratting">
-                                            <i class="icon_star"></i>
-                                            <i class="icon_star"></i>
-                                            <i class="icon_star"></i>
-                                            <i class="icon_star"></i>
-                                            <i class="icon_star"></i>
-                                        </div>
-                                        <div class="product-digit">
-                                            <span>5.0</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-review-order">
-                                        <span>62 Reviews</span>
-                                        <span>242 orders</span>
-                                    </div>
-                                </div>
-                                <p>Seamlessly predominate enterprise metrics without performance based process
-                                    improvements.</p>
-                                <div class="pro-details-price">
-                                    <span class="new-price">$75.72</span>
-                                    <span class="old-price">$95.72</span>
-                                </div>
-                                <div class="pro-details-color-wrap">
-                                    <span>Color:</span>
-                                    <div class="pro-details-color-content">
-                                        <ul>
-                                            <li><a class="dolly" href="#">dolly</a></li>
-                                            <li><a class="white" href="#">white</a></li>
-                                            <li><a class="azalea" href="#">azalea</a></li>
-                                            <li><a class="peach-orange" href="#">Orange</a></li>
-                                            <li><a class="mona-lisa active" href="#">lisa</a></li>
-                                            <li><a class="cupid" href="#">cupid</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="pro-details-size">
-                                    <span>Size:</span>
-                                    <div class="pro-details-size-content">
-                                        <ul>
-                                            <li><a href="#">XS</a></li>
-                                            <li><a href="#">S</a></li>
-                                            <li><a href="#">M</a></li>
-                                            <li><a href="#">L</a></li>
-                                            <li><a href="#">XL</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="pro-details-quality">
-                                    <span>Quantity:</span>
-                                    <div class="cart-plus-minus">
-                                        <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
-                                    </div>
-                                </div>
-                                <div class="product-details-meta">
-                                    <ul>
-                                        <li><span>Categories:</span> <a href="#">Woman,</a> <a href="#">Dress,</a> <a
-                                                    href="#">T-Shirt</a></li>
-                                        <li><span>Tag: </span> <a href="#">Fashion,</a> <a href="#">Mentone</a> , <a
-                                                    href="#">Texas</a></li>
-                                    </ul>
-                                </div>
-                                <div class="pro-details-action-wrap">
-                                    <div class="pro-details-add-to-cart">
-                                        <a title="Add to Cart" href="#">Add To Cart </a>
-                                    </div>
-                                    <div class="pro-details-action">
-                                        <a title="Add to Wishlist" href="#"><i class="icon-heart"></i></a>
-                                        <a title="Add to Compare" href="#"><i class="icon-refresh"></i></a>
-                                        <a class="social" title="Social" href="#"><i class="icon-share"></i></a>
-                                        <div class="product-dec-social">
-                                            <a class="facebook" title="Facebook" href="#"><i
-                                                        class="icon-social-facebook"></i></a>
-                                            <a class="twitter" title="Twitter" href="#"><i
-                                                        class="icon-social-twitter"></i></a>
-                                            <a class="instagram" title="Instagram" href="#"><i
-                                                        class="icon-social-instagram"></i></a>
-                                            <a class="pinterest" title="Pinterest" href="#"><i
-                                                        class="icon-social-pinterest"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal end -->
+    <?php include 'include/modal.php' ?>
 </div>
 
 <!-- All JS is here
 ============================================ -->
 <?php include 'include/js.php' ?>
+<script>
+    $('#limit').change(function () {
+        window.location.href = "authors.php?<?php echo $qry.$selectedOption_qry . '&lim='?>" + $(this).val();
+    });
+    $('#filter').change(function () {
+        window.location.href = "authors.php?<?php echo $qry .$limit_qry. '&filter='?>" + $(this).val();
+    });
+</script>
 
 </body>
 

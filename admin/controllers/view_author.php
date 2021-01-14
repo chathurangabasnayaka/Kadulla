@@ -19,8 +19,11 @@ $columns = array(
 // Include SQL query processing class
 require '../Datatable/ssp.class.php';
 
+$db = SSP::db($dbDetails);
+$db->exec("set names utf8");
+
 $whereResult = "isActive ='1'";
 // Output data as json format
 echo json_encode(
-    SSP::complex($_GET, $dbDetails, $table, $primaryKey, $columns ,$whereResult, null)
+    SSP::complex($_GET, $db, $table, $primaryKey, $columns ,$whereResult, null)
 );

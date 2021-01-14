@@ -73,11 +73,64 @@
                 </li>
 
 
-                <li class="nav-item">
-                    <a href="index.php?list_news" class="nav-link">
-                        <i class="nav-icon fas fa-newspaper"></i>
-                        <p>Manage News</p>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-people-carry"></i>
+                        <p>
+                            Index Page Setting
+                            <i class="fas fa-angle-left right"></i>
+                            <span class="badge badge-info right">4</span>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="index.php?slider" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Slider</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="index.php?banner" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Banner</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="index.php?dayBook" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Book of the Day</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-info"></i>
+                        <p>
+                            Blog Page Setting
+                            <i class="fas fa-angle-left right"></i>
+                            <span class="badge badge-info right">4</span>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="index.php?blog_cats" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Manage Categories</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.php?blog_post" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Manage Post</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
 <!--                <li class="nav-item">-->

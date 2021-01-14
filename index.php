@@ -1,16 +1,24 @@
 <!doctype html>
 <html class="no-js" lang="en">
-
+<?php
+include('include/db.php');
+session_start();
+$cus_name = '';
+if (isset($_SESSION["cus_name"])) {
+    $cus_name = $_SESSION["cus_name"];
+//    header("location:my-account.php");
+}
+?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Kadulla - Book Publishers</title>
+    <title>Home - Kadulla Book Publishers</title>
     <meta name="robots" content="noindex, follow"/>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.jpeg">
 
     <!-- All CSS is here
 	============================================ -->
@@ -27,7 +35,7 @@
     <!-- mobile header start -->
     <?php include 'include/mobile_header.php' ?>
 
-    <?php include 'include/slidder.php' ?>
+    <?php include 'include/slider.php' ?>
 
     <?php include 'include/service.php' ?>
 
@@ -37,7 +45,7 @@
 
     <?php include 'include/daily_recommend.php' ?>
 
-    <?php include 'include/recommended.php' ?>
+    <!--    --><?php //include 'include/recommended.php' ?>
 
     <?php include 'include/seller_picks.php' ?>
 
@@ -47,6 +55,8 @@
 
     <?php include 'include/subscribe_area.php' ?>
 
+    <?php include 'include/modal.php' ?>
+
     <?php include 'include/footer.php' ?>
 
 
@@ -55,6 +65,60 @@
 <!-- All JS is here
 ============================================ -->
 <?php include 'include/js.php' ?>
+
+<script type="text/javascript">
+    $('.bookViewBtn').click(function (e) {
+        e.preventDefault();
+        let bookId = this.id;
+        let dataString = 'bookId=' + bookId + '&seller_picks=' + 'seller_picks';
+        // $('#exampleModal').modal('show');
+        $.ajax({
+            type: 'POST',
+            data: dataString,
+            url: 'controllers/book_search.php',
+            success: function (response) {
+                let data = JSON.parse(response);
+                $("div#title h2").html(data.name);
+                $('#bookDetails').text(data.discription);
+                $('.new-price').html('Rs.' + data.latest_price);
+                $('.old-price').html('Rs.' + data.price);
+                $("#cats").html('<span>Categories:</span>' + data.cat);
+                $("#img1").attr("src", 'admin/img/book/' + data.img1);
+                $("#img2").attr("src", 'admin/img/book/' + data.img2);
+                $("#img3").attr("src", 'admin/img/book/' + data.img3);
+                $("#img4").attr("src", 'admin/img/book/' + data.img4);
+
+                $("#q_img1").attr("src", 'admin/img/book/' + data.img1);
+                $("#q_img2").attr("src", 'admin/img/book/' + data.img2);
+                $("#q_img3").attr("src", 'admin/img/book/' + data.img3);
+                $("#q_img4").attr("src", 'admin/img/book/' + data.img4);
+
+                $('#exampleModal').modal('show');
+
+            },
+            error: function (response) {
+                console.log(response);
+            }
+        });
+    });
+
+    ////check login button account
+    $("#login_check").click(function (event) {
+        //let aid = '<?php //echo $_SESSION["cus_name"]; ?>//';
+        let aid = '<?php echo $cus_name?>';
+        if (aid != null) {
+            window.location.href = "login-register.php";
+        }
+        event.preventDefault();
+    });
+    ////check login button account
+
+    $('.basket_btn').click(function (e) {
+        let val = $(this).val();
+        alert(val);
+    });
+
+</script>
 
 </body>
 
