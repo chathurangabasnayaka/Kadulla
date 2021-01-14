@@ -3,9 +3,9 @@
 <?php
 include('include/db.php');
 session_start();
-$cus_name = '';
-if (isset($_SESSION["cus_name"])) {
-    $cus_name = $_SESSION["cus_name"];
+$user = '';
+if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
 //    header("location:my-account.php");
 }
 ?>
@@ -104,8 +104,8 @@ if (isset($_SESSION["cus_name"])) {
 
     ////check login button account
     $("#login_check").click(function (event) {
-        //let aid = '<?php //echo $_SESSION["cus_name"]; ?>//';
-        let aid = '<?php echo $cus_name?>';
+        //let aid = '<?php //echo $_SESSION["user"]; ?>//';
+        let aid = '<?php echo $user?>';
         if (aid != null) {
             window.location.href = "login-register.php";
         }

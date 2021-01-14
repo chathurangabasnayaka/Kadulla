@@ -348,14 +348,14 @@ include('include/db.php');
 
                                     $selectedOption = "book_id";
                                     $selectedOption_qry = "";
-                                    if (isset($_GET["filter"]) && $_GET["filter"]!='') {
+                                    if (isset($_GET["filter"]) && $_GET["filter"] != '') {
                                         $selectedOption = $_GET["filter"];
                                         $selectedOption_qry = "&filter=" . $_GET["filter"];
                                     }
 
                                     $catq = "";
                                     $selectedCats_qry = "";
-                                    if (isset($_GET["cat"]) && $_GET["cat"]!='') {
+                                    if (isset($_GET["cat"]) && $_GET["cat"] != '') {
                                         $catq = " AND bc.`cats_id`='" . $_GET["cat"] . "' ";
                                         $selectedCats_qry = "&cat=" . $_GET["cat"];
                                     }
@@ -363,9 +363,9 @@ include('include/db.php');
                                     $type = "";
                                     $type_q = "";
                                     $selectedType_qry = "";
-                                    if (isset($_GET["type"]) && $_GET["type"]!='') {
+                                    if (isset($_GET["type"]) && $_GET["type"] != '') {
                                         $type = $_GET["type"];
-                                        $type_q = " AND t.`id` IN(" . substr($type,1,strlen($type)-1) . ") ";
+                                        $type_q = " AND t.`id` IN(" . substr($type, 1, strlen($type) - 1) . ") ";
 
                                         $selectedType_qry = "&type=" . $_GET["type"];
 
@@ -374,7 +374,7 @@ include('include/db.php');
                                     $minq = " AND b.`latest_price`>=50 ";;
                                     $min_qry = '';
                                     $min = 0;
-                                    if (isset($_GET["min"]) && $_GET["min"]!='') {
+                                    if (isset($_GET["min"]) && $_GET["min"] != '') {
                                         $minq = " AND b.`latest_price`>='" . $_GET["min"] . "' ";
                                         $min_qry = "&min=" . $_GET["min"];
                                         $min = $_GET["min"];
@@ -383,7 +383,7 @@ include('include/db.php');
                                     $maxq = " AND b.`latest_price`>=50 ";;
                                     $max_qry = '';
                                     $max = 0;
-                                    if (isset($_GET["max"])  && $_GET["max"]!='') {
+                                    if (isset($_GET["max"]) && $_GET["max"] != '') {
                                         $maxq = " AND b.`latest_price`<='" . $_GET["max"] . "' ";
                                         $max_qry = "&max=" . $_GET["max"];
                                         $max = $_GET["max"];
@@ -393,13 +393,13 @@ include('include/db.php');
                                     $qry = "";
                                     $limit = 4;
                                     $limit_qry = "";
-                                    if (isset($_GET["lim"])  && $_GET["lim"]!='') {
+                                    if (isset($_GET["lim"]) && $_GET["lim"] != '') {
                                         $limit = $_GET["lim"];
                                         $limit_qry = "&lim=" . $_GET["lim"];
                                     }
 
                                     $page = "";
-                                    if (isset($_GET["page"]) && $_GET["page"]!='') {
+                                    if (isset($_GET["page"]) && $_GET["page"] != '') {
                                         $page = $_GET["page"];
                                         $qry .= "&page=" . $_GET["page"];
                                     } else {
@@ -599,10 +599,10 @@ include('include/db.php');
 
                                         $tt = "";
                                         if (isset($_GET["cat"]) && $_GET["cat"] == $id) {
-                                            $tt="class='active'";
+                                            $tt = "class='active'";
                                         }
 
-                                        echo "<li value='$id'><a  ".$tt." href='book.php?" . $qry . $limit_qry . $selectedOption_qry . $max_qry . $min_qry . $selectedType_qry . "&cat=$id'>$name</a></li>";
+                                        echo "<li value='$id'><a  " . $tt . " href='book.php?" . $qry . $limit_qry . $selectedOption_qry . $max_qry . $min_qry . $selectedType_qry . "&cat=$id'>$name</a></li>";
                                     }
                                     ?>
 
@@ -627,24 +627,25 @@ include('include/db.php');
                             <div class="sidebar-widget-list">
                                 <ul>
                                     <?php
-
                                     $sql = "SELECT t.`name`,COUNT(b.`id`) bc,t.`id` FROM `book` b JOIN `type` t ON b.`type_id`=t.`id` WHERE b.`is_Active`='1' AND t.`is_Active`='1' GROUP BY t.`name`";
                                     $execute = mysqli_query($con, $sql);
-                                    while ($row = mysqli_fetch_array($execute)) {
-                                        $name = $row['name'];
-                                        $bc = $row['bc'];
-                                        $id = $row['id'];
-                                        $st = "";
-                                        if(isset($_GET['type']) && strpos($_GET['type'], ','.$id) !== false){
-                                            $st="checked=''";
-                                        }
+                                    if ($execute->num_rows > 0) {
+                                        while ($row = mysqli_fetch_array($execute)) {
+                                            $name = $row['name'];
+                                            $bc = $row['bc'];
+                                            $id = $row['id'];
+                                            $st = "";
+                                            if (isset($_GET['type']) && strpos($_GET['type'], ',' . $id) !== false) {
+                                                $st = "checked=''";
+                                            }
 
-                                        echo '<li>
+                                            echo '<li>
                                         <div class="sidebar-widget-list-left">
-                                            <input class="btype" type="checkbox" value="" tid="'.$id.'" '.$st.' > <a href="book.php?' . $qry . $limit_qry . $selectedOption_qry . $max_qry . $min_qry . $selectedCats_qry . '&type=' . $id . '">' . $name . '<span>' . $bc . '</span> </a>
+                                            <input class="btype" type="checkbox" value="" tid="' . $id . '" ' . $st . ' > <a href="book.php?' . $qry . $limit_qry . $selectedOption_qry . $max_qry . $min_qry . $selectedCats_qry . '&type=' . $id . '">' . $name . '<span>' . $bc . '</span> </a>
                                             <span class="checkmark"></span>
                                         </div>
                                     </li>';
+                                        }
                                     }
                                     ?>
                                 </ul>
@@ -676,16 +677,16 @@ include('include/db.php');
     $('.btype').change(function () {
         console.log($(this).is(":checked"));
         <?php
-//            if ($type!=''){
-//                $type.= ',';
-//            }
+        //            if ($type!=''){
+        //                $type.= ',';
+        //            }
         ?>
 
-        if ($(this).is(":checked")){
-            window.location.href = "book.php?<?php echo $qry . $selectedOption_qry . $selectedCats_qry . $max_qry . $min_qry . $limit_qry . '&type='.$type ?>" + ','+$(this).attr('tid');
-        }else {
+        if ($(this).is(":checked")) {
+            window.location.href = "book.php?<?php echo $qry . $selectedOption_qry . $selectedCats_qry . $max_qry . $min_qry . $limit_qry . '&type=' . $type ?>" + ',' + $(this).attr('tid');
+        } else {
             let st = "<?php echo $type?>";
-            window.location.href = "book.php?<?php echo $qry . $selectedOption_qry . $selectedCats_qry . $max_qry . $min_qry . $limit_qry . '&type=' ?>" + st.replace(','+$(this).attr('tid'),'') ;
+            window.location.href = "book.php?<?php echo $qry . $selectedOption_qry . $selectedCats_qry . $max_qry . $min_qry . $limit_qry . '&type=' ?>" + st.replace(',' + $(this).attr('tid'), '');
         }
 
     });

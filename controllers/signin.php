@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (!empty($uname) && !empty($upass)) {
         $result = mysqli_query($con, "SELECT id,uname,email,pass FROM customer WHERE (uname='$uname' || email='$uname')");
-        $user = mysqli_fetch_array($result);
+        $user = mysqli_fetch_assoc($result);
 
         if ($user > 0) {
             $db_pass = $user['pass'];
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($upass == $db_pass) {
                     setcookie("cus_login", $uname, time() + (10 * 365 * 24 * 60 * 60));
                     setcookie('cus_password', md5($upass.$private_key),time() + (10 * 365 * 24 * 60 * 60));
-                    $_SESSION["cus_name"] = $uname;
+                    $_SESSION["user"] = $user;
                     echo 'success';
                 } else {
                     echo 'w-pass';
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if (isset($_COOKIE["cus_id"])) {
                         setcookie("cus_id", '');
                     }
-                    $_SESSION["cus_name"] = $uname;
+                    $_SESSION["user"] = $uname;
                     echo 'success';
                 } else {
                     echo 'w-pass';

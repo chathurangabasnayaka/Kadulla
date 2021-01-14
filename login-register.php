@@ -3,7 +3,7 @@
 <?php
 include('include/db.php');
 session_start();
-if(isset($_SESSION["cus_name"]))
+if(isset($_SESSION["user"]))
 {
     header("location: my-account.php");
 }

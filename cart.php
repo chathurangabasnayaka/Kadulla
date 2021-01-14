@@ -3,12 +3,12 @@
 <?php
 include('include/db.php');
 session_start();
-$cus_name = '';
+$user = '';
 ?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Norda - Minimal eCommerce HTML Template</title>
+    <title>Books - Kadulla Book Publishers</title>
     <meta name="robots" content="noindex, follow"/>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -66,30 +66,30 @@ $cus_name = '';
                         </div>
                         <div class="col-xl-2 col-lg-3">
                             <div class="header-action header-action-flex header-action-mrg-right">
-<!--                                <div class="same-style-2 header-search-1">-->
-<!--                                    <a class="search-toggle" href="#">-->
-<!--                                        <i class="icon-magnifier s-open"></i>-->
-<!--                                        <i class="icon_close s-close"></i>-->
-<!--                                    </a>-->
-<!--                                    <div class="search-wrap-1">-->
-<!--                                        <form action="#">-->
-<!--                                            <input placeholder="Search products…" type="text">-->
-<!--                                            <button class="button-search"><i class="icon-magnifier"></i></button>-->
-<!--                                        </form>-->
-<!--                                    </div>-->
-<!--                                </div>-->
+                                <!--                                <div class="same-style-2 header-search-1">-->
+                                <!--                                    <a class="search-toggle" href="#">-->
+                                <!--                                        <i class="icon-magnifier s-open"></i>-->
+                                <!--                                        <i class="icon_close s-close"></i>-->
+                                <!--                                    </a>-->
+                                <!--                                    <div class="search-wrap-1">-->
+                                <!--                                        <form action="#">-->
+                                <!--                                            <input placeholder="Search products…" type="text">-->
+                                <!--                                            <button class="button-search"><i class="icon-magnifier"></i></button>-->
+                                <!--                                        </form>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
                                 <div class="same-style-2">
                                     <a href="login-register.php"><i class="icon-user"></i></a>
                                 </div>
-<!--                                <div class="same-style-2">-->
-<!--                                    <a href="wishlist.php"><i class="icon-heart"></i><span-->
-<!--                                            class="pro-count red">03</span></a>-->
-<!--                                </div>-->
-<!--                                <div class="same-style-2 header-cart">-->
-<!--                                    <a class="cart-active" href="#">-->
-<!--                                        <i class="icon-basket-loaded"></i><span class="pro-count red">02</span>-->
-<!--                                    </a>-->
-<!--                                </div>-->
+                                <!--                                <div class="same-style-2">-->
+                                <!--                                    <a href="wishlist.php"><i class="icon-heart"></i><span-->
+                                <!--                                            class="pro-count red">03</span></a>-->
+                                <!--                                </div>-->
+                                <!--                                <div class="same-style-2 header-cart">-->
+                                <!--                                    <a class="cart-active" href="#">-->
+                                <!--                                        <i class="icon-basket-loaded"></i><span class="pro-count red">02</span>-->
+                                <!--                                    </a>-->
+                                <!--                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -109,10 +109,10 @@ $cus_name = '';
                             <div class="same-style-2">
                                 <a href="login-register.php"><i class="icon-user"></i></a>
                             </div>
-<!--                            <div class="same-style-2">-->
-<!--                                <a href="wishlist.php"><i class="icon-heart"></i><span-->
-<!--                                        class="pro-count red">03</span></a>-->
-<!--                            </div>-->
+                            <!--                            <div class="same-style-2">-->
+                            <!--                                <a href="wishlist.php"><i class="icon-heart"></i><span-->
+                            <!--                                        class="pro-count red">03</span></a>-->
+                            <!--                            </div>-->
                             <div class="same-style-2 header-cart">
                                 <a class="cart-active" href="#">
                                     <i class="icon-basket-loaded"></i><span class="pro-count red">02</span>

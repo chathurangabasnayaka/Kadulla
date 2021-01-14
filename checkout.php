@@ -3,7 +3,7 @@
 <?php
 include('include/db.php');
 session_start();
-$cus_name = '';
+$user = '';
 ?>
 <head>
     <meta charset="utf-8">

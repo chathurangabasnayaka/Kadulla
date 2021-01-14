@@ -23,8 +23,8 @@
                                 <div class="same-style same-style-mrg-2 track-order">
                                     <p>
                                         <?php
-                                        if ($cus_name != ''){
-                                            echo 'Hi, '.$cus_name .'..' ;
+                                        if ($user != ''){
+                                            echo 'Hi, '.$user .'..' ;
                                         }else{
                                             echo '';
                                         }
