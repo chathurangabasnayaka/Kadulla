@@ -13,7 +13,7 @@
                                 <a href="#"><i class="icon-social-pinterest"></i></a>
                             </div>
                             <div class="header-offer-wrap-2">
-                                <p><span>FREE SHIPPING</span> island wide for all orders over Rs.2999</p>
+                                <p><span>FREE SHIPPING</span> island wide for all orders over LKR.2999</p>
                             </div>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                                     <p>
                                         <?php
                                         if ($user != ''){
-                                            echo 'Hi, '.$user .'..' ;
+                                            echo 'Hi, '.$user['uname'];
                                         }else{
                                             echo '';
                                         }
@@ -82,8 +82,11 @@
 <!--                            </div>-->
                             <div class="same-style-2 same-style-2-font-inc header-cart">
                                 <a class="cart-active" href="#">
-                                    <i class="icon-basket-loaded"></i><span class="pro-count green">02</span>
-                                    <span class="cart-amount">$2,435.30</span>
+                                    <?php
+                                        include_once ('cart_controller.php');
+                                    ?>
+                                    <i class="icon-basket-loaded"></i><span class="pro-count green"><?=getSize()?></span>
+                                    <span class="cart-amount">LKR <?= number_format((float)calculateTotal(), 2, '.', '');?></span>
                                 </a>
                             </div>
                         </div>

@@ -1,4 +1,3 @@
-
 <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
 <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
 <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
@@ -21,6 +20,23 @@
 <script src="assets/js/plugins/plugins.min.js"></script>  -->
 <!-- Main JS -->
 <script src="assets/js/main.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.remove-cart').click(function () {
+            let book_id = $(this).data('id')
 
+            $.post("update-cart.php",
+                {
+                    book_id: book_id,
+                    qty: 0
+                },
+                function (data, status) {
+                    if (data == 'success') {
+                        window.location.href = 'cart.php';
+                    }
+                });
+        });
 
-<?php
+    });
+</script>
+

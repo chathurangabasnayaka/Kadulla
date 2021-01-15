@@ -58,7 +58,7 @@ include('include/db.php');
                             <div class="main-menu main-menu-padding-1 main-menu-lh-1">
                                 <nav>
                                     <ul>
-                                        <?php include_once 'include/header_link.php'?>
+                                        <?php include_once 'include/header_link.php' ?>
                                     </ul>
                                     </li>
                                     </ul>
@@ -110,9 +110,9 @@ include('include/db.php');
                             <div class="same-style-2">
                                 <a href="login-register.php"><i class="icon-user"></i></a>
                             </div>
-<!--                            <div class="same-style-2">-->
-<!--                                <a href="wishlist.php"><i class="icon-heart"></i><span class="pro-count red">03</span></a>-->
-<!--                            </div>-->
+                            <!--                            <div class="same-style-2">-->
+                            <!--                                <a href="wishlist.php"><i class="icon-heart"></i><span class="pro-count red">03</span></a>-->
+                            <!--                            </div>-->
                             <div class="same-style-2 header-cart">
                                 <a class="cart-active" href="#">
                                     <i class="icon-basket-loaded"></i><span class="pro-count red">02</span>
@@ -230,7 +230,7 @@ include('include/db.php');
         </div>
     </div>
     <?php
-    $PID=$_GET['ID'];
+    $PID = $_GET['ID'];
     $sql = "SELECT b.`id`,t.`name` typename,b.`name`,b.`available_qty`,b.`discription`,b.`price`,b.`latest_price`,b.`img1`,b.`img2`,b.`img3`,b.`img4`,a.`name` as author_name,a.id a_id,p.`name` pub_name,b.`page`,b.`isbn_no`,(SELECT GROUP_CONCAT(`categories`.`name`) FROM `book_has_cats` AS bhc LEFT JOIN `categories` ON bhc.cats_id=categories.`id` WHERE bhc.book_id=b.`id` ) AS cat FROM `book` b INNER JOIN `author` a inner JOIN `publisher` p inner join `type` t WHERE a.`id`= b.`author_id` and t.`id`=b.`type_id` and p.`id` = b.`publisher_id` AND b.`is_Active`='1' and b.`id`='$PID' LIMIT 1";
     $run_sql = mysqli_query($con, $sql);
     $row = mysqli_fetch_assoc($run_sql);
@@ -328,10 +328,11 @@ include('include/db.php');
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product-details-content pro-details-content-mrg">
+                        <input type="hidden" id="book_id" value="<?= $id ?>">
                         <h1><?php echo $name ?></h1>
                         <span></span>
                         <h2><a href="#"><?php echo $author_name ?></a></h2>
-<!--                        <p>වැඩ බැරි දාස චිත්‍ර ශිල්පියෙක් වීමට උත්සාහ කල හැටි කියවන්න. නිකොලායි නෝසව්..</p>-->
+                        <!--                        <p>වැඩ බැරි දාස චිත්‍ර ශිල්පියෙක් වීමට උත්සාහ කල හැටි කියවන්න. නිකොලායි නෝසව්..</p>-->
                         <div class="pro-details-price">
                             <span class="new-price">Rs.<?php echo $latest_price ?></span>
                             <span class="old-price">Rs.<?php echo $price ?></span>
@@ -339,30 +340,32 @@ include('include/db.php');
                         <div class="pro-details-quality">
                             <span>Quantity:</span>
                             <div class="cart-plus-minus">
-                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" min="1" max="<?php echo $qty ?>">
+                                <input class="cart-plus-minus-box" type="text" id="qty" name="qty" value="1" min="1"
+                                       max="<?php echo $qty ?>">
                             </div>
                         </div>
                         <div class="product-details-meta">
                             <ul>
                                 <li><span>Categories:</span>
                                     <?php
-                                    foreach ($cat as $index=>$cat_si) {
-                                        if ($index == 2){
+                                    foreach ($cat as $index => $cat_si) {
+                                        if ($index == 2) {
                                             break;
                                         }
-                                        echo '<a href="'.$index.'">'.$cat_si.'</a>';
+                                        echo '<a href="' . $index . '">' . $cat_si . '</a>';
                                     }
                                     ?>
                                 </li>
-                                <li><span>Publisher </span> <a href="publisher-details.php?ID="><?php echo $publisher ?></a></li>
+                                <li><span>Publisher </span> <a
+                                            href="publisher-details.php?ID="><?php echo $publisher ?></a></li>
                             </ul>
                         </div>
                         <div class="pro-details-action-wrap">
                             <div class="pro-details-add-to-cart">
-                                <a title="Add to Cart" href="#">Add To Cart </a>
+                                <a id="add-cart" title="Add to Cart" href="#">Add To Cart </a>
                             </div>
                             <div class="pro-details-action">
-<!--                                <a title="Add to Wishlist" href="#"><i class="icon-heart"></i></a>-->
+                                <!--                                <a title="Add to Wishlist" href="#"><i class="icon-heart"></i></a>-->
                                 <a class="social" title="Social" href="#"><i class="icon-share"></i></a>
                                 <div class="product-dec-social">
                                     <a class="facebook" title="Facebook" href="#"><i
@@ -554,10 +557,10 @@ include('include/db.php');
                                 <img src="assets/images/product/product-13.jpg" alt="">
                             </a>
                             <div class="product-action-2 tooltip-style-2">
-<!--                                <button title="Wishlist"><i class="icon-heart"></i></button>-->
+                                <!--                                <button title="Wishlist"><i class="icon-heart"></i></button>-->
                                 <button title="Quick View" data-toggle="modal" data-target="#exampleModal"><i
                                             class="icon-size-fullscreen icons"></i></button>
-<!--                                <button title="Compare"><i class="icon-refresh"></i></button>-->
+                                <!--                                <button title="Compare"><i class="icon-refresh"></i></button>-->
                             </div>
                         </div>
                         <div class="product-content-wrap-2 text-center">
@@ -593,7 +596,23 @@ include('include/db.php');
 ============================================ -->
 
 <?php include 'include/js.php' ?>
+<script>
+    $(document).ready(function () {
+        $('#add-cart').on('click', function () {
 
+            $.post("add-to-cart.php",
+                {
+                    book_id: $('#book_id').val(),
+                    qty: $('#qty').val()
+                },
+                function (data, status) {
+                    if (data == 'success') {
+                       window.location.href = 'cart.php';
+                    }
+                });
+        });
+    });
+</script>
 </body>
 
 </html>

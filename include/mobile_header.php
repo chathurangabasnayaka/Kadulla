@@ -63,3 +63,74 @@
         </div>
     </div>
 </div>
+<!-- mini cart start -->
+<div class="sidebar-cart-active">
+    <div class="sidebar-cart-all">
+        <a class="cart-close" href="#"><i class="icon_close"></i></a>
+        <div class="cart-content">
+            <h3>Shopping Cart</h3>
+            <ul>
+                <?php
+
+                $total = 0;
+
+                include_once('include/cart_controller.php');
+                $items = getAllItems();
+                if (isset($items['db'])) {
+
+                    while ($row = mysqli_fetch_assoc($items['db'])) {
+                        $book_id = $row['book_id'];
+                        $result = mysqli_query($con, "SELECT * FROM `book` WHERE id='$book_id'");
+                        $book = mysqli_fetch_assoc($result);
+                        ?>
+                        <li class="single-product-cart">
+                            <div class="cart-img">
+                                <a href="#"><img src="admin/img/book/<?= $book['img1'] ?>" alt=""></a>
+                            </div>
+                            <div class="cart-title">
+                                <h4><a href="#"><?= $book['name'] ?></a></h4>
+                                <span> <?= $row['qty'] ?> × LKR <?= number_format((float)$book['latest_price'], 2, '.', '');?></span>
+                            </div>
+                            <div class="cart-delete">
+                                <a class="remove-cart" data-id="<?= $book_id ?>" href="#">×</a>
+                            </div>
+                        </li>
+                        <?php
+
+                        $total += $book['latest_price'] * $row['qty'];
+                    }
+                } elseif (isset($items['session'])) {
+                    foreach ($items['session'] as $id => $qty) {
+                        $result = mysqli_query($con, "SELECT * FROM `book` WHERE id='$id'");
+                        $book = mysqli_fetch_assoc($result);
+                        ?>
+                        <li class="single-product-cart">
+                            <div class="cart-img">
+                                <a href="#"><img src="admin/img/book/<?= $book['img1'] ?>" alt=""></a>
+                            </div>
+                            <div class="cart-title">
+                                <h4><a href="#"><?= $book['name'] ?></a></h4>
+                                <span> <?= $qty ?> × LKR <?= number_format((float)$book['latest_price'], 2, '.', '');?></span>
+                            </div>
+                            <div class="cart-delete">
+                                <a class="remove-cart" data-id="<?= $id ?>" href="#">×</a>
+                            </div>
+                        </li>
+                        <?php
+
+                        $total += $book['latest_price'] * $qty;
+                    }
+                }
+                ?>
+
+            </ul>
+            <div class="cart-total">
+                <h4>Subtotal: <span>LKR <?= number_format((float)$total, 2, '.', '');?></span></h4>
+            </div>
+            <div class="cart-checkout-btn">
+                <a class="btn-hover cart-btn-style" href="cart.php">view cart</a>
+                <a class="no-mrg btn-hover cart-btn-style" href="checkout.php">checkout</a>
+            </div>
+        </div>
+    </div>
+</div>
