@@ -71,7 +71,6 @@ if (isset($_SESSION["user"])) {
         e.preventDefault();
         let bookId = this.id;
         let dataString = 'bookId=' + bookId + '&seller_picks=' + 'seller_picks';
-        // $('#exampleModal').modal('show');
         $.ajax({
             type: 'POST',
             data: dataString,
@@ -108,15 +107,17 @@ if (isset($_SESSION["user"])) {
         let aid = '<?php echo $user?>';
         if (aid != null) {
             window.location.href = "login-register.php";
+        }else {
+            window.location.href = "my-account.php";
         }
         event.preventDefault();
     });
     ////check login button account
 
-    $('.basket_btn').click(function (e) {
-        let val = $(this).val();
-        alert(val);
-    });
+    // $('.basket_btn').click(function (e) {
+    //     let val = $(this).val();
+    //     alert(val);
+    // });
 
 </script>
 

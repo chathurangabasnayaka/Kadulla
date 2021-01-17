@@ -72,6 +72,19 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="index.php?delivery_cost" class="nav-link">
+                        <i class="nav-icon fas fa-book-medical"></i>
+                        <p>Manage Delivery Cost</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="index.php?dollar_rate" class="nav-link">
+                        <i class="nav-icon fas fa-dollar-sign"></i>
+                        <p>Dollar Rate</p>
+                    </a>
+                </li>
 
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">

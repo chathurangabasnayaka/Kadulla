@@ -13,7 +13,8 @@
                                 <a href="#"><i class="icon-social-pinterest"></i></a>
                             </div>
                             <div class="header-offer-wrap-2">
-                                <p><span>FREE SHIPPING</span> island wide for all orders over LKR.2999</p>
+                                <p><i class="icon-paper-plane"></i> FREE SHIPPING world wide for all orders over <span>LKR. 2999</span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -152,15 +153,14 @@
                 <div class="col-5">
                     <div class="mobile-logo">
                         <a href="index.php">
-                            <img alt="" src="assets/images/logo/logo.png">
+                            <img width="130" height="40" alt="" src="assets/images/logo/logo.png">
                         </a>
                     </div>
                 </div>
                 <div class="col-7">
                     <div class="header-action header-action-flex">
                         <div class="same-style-2 same-style-2-font-inc">
-<!--                            <a href="login-register.html"><i class="icon-user"></i></a>-->
-                            <p>test</p>
+                            <a href="login-register.php"><i class="icon-user"></i></a>
                         </div>
                         <div class="same-style-2 same-style-2-font-inc">
 <!--                            <a href="wishlist.html"><i class="icon-heart"></i><span class="pro-count green">03</span></a>-->

@@ -3,21 +3,33 @@
         <a class="sidebar-close"><i class="icon_close"></i></a>
         <div class="mobile-header-content-area">
             <div class="header-offer-wrap-2 mrg-none mobile-header-padding-border-4">
-                <p><span>FREE SHIPPING</span> world wide for all orders over Rs 1999</p>
+                <p><i class="icon-paper-plane"></i>FREE SHIPPING world wide for all orders over <span>Rs.2999</span>
+                </p>
             </div>
-            <div class="mobile-search mobile-header-padding-border-1">
-                <form class="search-form" action="#">
-                    <input type="text" placeholder="Search here…">
-                    <button class="button-search"><i class="icon-magnifier"></i></button>
-                </form>
-            </div>
+<!--            <div class="mobile-search mobile-header-padding-border-1">-->
+<!--                <form class="search-form" action="#">-->
+<!--                    <input type="text" placeholder="Search here…">-->
+<!--                    <button class="button-search"><i class="icon-magnifier"></i></button>-->
+<!--                </form>-->
+<!--            </div>-->
             <div class="mobile-menu-wrap mobile-header-padding-border-2">
                 <!-- mobile menu start -->
                 <nav>
                     <ul class="mobile-menu">
-                        <li class="menu-item-has-children"><a href="authors.php">AUTHORS</a></li>
-                        <li class="menu-item-has-children "><a href="authors.php">TRANSLATORS </a></li>
-                        <li class="menu-item-has-children "><a href="Publishers.php">PUBLISHERS </a></li>
+                        <li class="menu-item-has-children"><a href="index.php">Home</a>
+                        </li>
+                        <li class="menu-item-has-children"><a href="book.php">BOOKS</a>
+                        </li>
+                        <li class="menu-item-has-children "><a href="#">EXPLORE</a>
+                            <ul class="dropdown">
+                                <li class="menu-item-has-children"><a href="authors.php">AUTHORS</a>
+                                </li>
+                                <li class="menu-item-has-children"><a href="translators.php">TRANSLATORS</a>
+                                </li>
+                                <li class="menu-item-has-children"><a href="publishers.php">PUBLISHERS</a>
+                                </li>
+                            </ul>
+                        </li>
                         <li><a href="blog.php">BLOG </a></li>
                         <li><a href="contact.html">CONTACT </a></li>
                     </ul>
@@ -49,9 +61,9 @@
             </div>
             <div class="mobile-contact-info mobile-header-padding-border-4">
                 <ul>
-                    <li><i class="icon-phone "></i> (+612) 2531 5600</li>
-                    <li><i class="icon-envelope-open "></i> norda@domain.com</li>
-                    <li><i class="icon-home"></i> PO Box 1622 Colins Street West Australia</li>
+                    <li><i class="icon-phone "></i> (+94) 112 926 9699 | (+94) 77 258 3942</li>
+                    <li><i class="icon-envelope-open "></i> sales@kadullabooks.lk</li>
+                    <li><i class="icon-home"></i> 451/4 C, Kandy Road, Kadawatha. 11850 Sri Lanka.</li>
                 </ul>
             </div>
             <div class="mobile-social-icon">
@@ -63,6 +75,7 @@
         </div>
     </div>
 </div>
+
 <!-- mini cart start -->
 <div class="sidebar-cart-active">
     <div class="sidebar-cart-all">

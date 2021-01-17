@@ -75,6 +75,10 @@ if (strlen($_SESSION['login']) == 0) {
         include("includes/list_blog_post.php");
     } else if (isset($_GET['add_blog_post'])) {
         include("includes/addBlogPost.php");
+    } else if (isset($_GET['delivery_cost'])) {
+        include("includes/deliveyCost.php");
+    } else if (isset($_GET['dollar_rate'])) {
+        include("includes/Dollar_rate.php");
     } else {
         include 'includes/index.php';
     }
@@ -1481,6 +1485,75 @@ if (strlen($_SESSION['login']) == 0) {
             }
         });
     });
+
+    //////Delivery Cost
+    $('[name ="select_country"]').on('select2:select', function (e) {
+        e.preventDefault();
+        let data = $('[name ="select_country"]').val();
+        let dataString = 'id=' + data + '&check=' + 'find';
+        $.ajax({
+            type: 'POST',
+            data: dataString,
+            url: 'controllers/delivery_cost.php',
+            success: function (response) {
+                let data = JSON.parse(response);
+                 let oneKg = data.one_kg;
+                 let per_kg = data.per_kg;
+                 let ten_kg = data.ten_kg;
+
+                $('[name ="f_price"]').val(oneKg);
+                $('[name ="per_price"]').val(per_kg);
+                $('[name ="ten_price"]').val(ten_kg);
+
+            },
+            error: function (response) {
+                console.log(response);
+            }
+        });
+    });
+
+    $('#Delivery_cost').on('submit', function (e) {
+        e.preventDefault();
+        let data = $('[name ="select_country"]').val();
+        let f_price = $('[name ="f_price"]').val();
+        let per_price = $('[name ="per_price"]').val();
+        let ten_price = $('[name ="ten_price"]').val();
+        let dataString = 'id=' + data + '&check=' + 'update' + '&f_price=' + f_price + '&per_price=' + per_price + '&ten_price='+ten_price;
+        $.ajax({
+            type: 'POST',
+            data: dataString,
+            url: 'controllers/delivery_cost.php',
+            success: function (data) {
+                if (data == 1) {
+                    toastr.success('Form data Updated successfully!');
+                } else {
+                    toastr.error('Failed !!');
+                }
+            }
+        });
+    });
+
+
+    $('#Dollar_rate').on('submit', function (e) {
+        e.preventDefault();
+        let data = $('[name ="dollar_rate"]').val();
+        let dataString = 'rate=' + data + '&check=' + 'dollar';
+        $.ajax({
+            type: 'POST',
+            data: dataString,
+            url: 'controllers/delivery_cost.php',
+            success: function (data) {
+                if (data == 1) {
+                    toastr.success('Form data Updated successfully!');
+                } else {
+                    toastr.error('Failed !!');
+                }
+            }
+        });
+    });
+
+    //////End Delivery Cost
+
 </script>
 </body>
 </html>

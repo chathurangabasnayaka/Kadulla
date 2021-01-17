@@ -2,6 +2,12 @@
 <html class="no-js" lang="zxx">
 <?php
 include('include/db.php');
+session_start();
+$user = '';
+if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
+//    header("location:my-account.php");
+}
 ?>
 <head>
     <meta charset="utf-8">
@@ -22,252 +28,9 @@ include('include/db.php');
 <body>
 
 <div class="main-wrapper">
-    <header class="header-area">
-        <div class="container">
-            <div class="header-large-device">
-                <div class="header-top header-top-ptb-1 border-bottom-1">
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="header-offer-wrap">
-                                <p><i class="icon-paper-plane"></i> FREE SHIPPING world wide for all orders over <span>$199</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="header-top-right">
-                                <div class="social-style-1 social-style-1-mrg">
-                                    <a href="#"><i class="icon-social-twitter"></i></a>
-                                    <a href="#"><i class="icon-social-facebook"></i></a>
-                                    <a href="#"><i class="icon-social-instagram"></i></a>
-                                    <a href="#"><i class="icon-social-youtube"></i></a>
-                                    <a href="#"><i class="icon-social-pinterest"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="header-bottom">
-                    <div class="row align-items-center">
-                        <div class="col-xl-2 col-lg-2">
-                            <div class="logo">
-                                <a href="index.php"><img src="assets/images/logo/logo.png" alt="logo"></a>
-                            </div>
-                        </div>
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="main-menu main-menu-padding-1 main-menu-lh-1">
-                                <nav>
-                                    <ul>
-                                        <?php include_once 'include/header_link.php' ?>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3">
-                            <div class="header-action header-action-flex header-action-mrg-right">
-                                <div class="same-style-2 header-search-1">
-                                    <a class="search-toggle" href="#">
-                                        <i class="icon-magnifier s-open"></i>
-                                        <i class="icon_close s-close"></i>
-                                    </a>
-                                    <div class="search-wrap-1">
-                                        <form action="#">
-                                            <input placeholder="Search products…" type="text">
-                                            <button class="button-search"><i class="icon-magnifier"></i></button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="same-style-2">
-                                    <a href="login-register.php"><i class="icon-user"></i></a>
-                                </div>
-                                <div class="same-style-2">
-                                    <a href="wishlist.php"><i class="icon-heart"></i><span
-                                                class="pro-count red">03</span></a>
-                                </div>
-                                <div class="same-style-2 header-cart">
-                                    <a class="cart-active" href="#">
-                                        <i class="icon-basket-loaded"></i><span class="pro-count red">02</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="header-small-device small-device-ptb-1">
-                <div class="row align-items-center">
-                    <div class="col-5">
-                        <div class="mobile-logo">
-                            <a href="index.php">
-                                <img alt="" src="assets/images/logo/logo.png">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-7">
-                        <div class="header-action header-action-flex">
-                            <div class="same-style-2">
-                                <a href="login-register.php"><i class="icon-user"></i></a>
-                            </div>
-                            <div class="same-style-2">
-                                <a href="wishlist.php"><i class="icon-heart"></i><span
-                                            class="pro-count red">03</span></a>
-                            </div>
-                            <div class="same-style-2 header-cart">
-                                <a class="cart-active" href="#">
-                                    <i class="icon-basket-loaded"></i><span class="pro-count red">02</span>
-                                </a>
-                            </div>
-                            <div class="same-style-2 main-menu-icon">
-                                <a class="mobile-header-button-active" href="#"><i class="icon-menu"></i> </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- Mobile menu start -->
-    <div class="mobile-header-active mobile-header-wrapper-style">
-        <div class="clickalbe-sidebar-wrap">
-            <a class="sidebar-close"><i class="icon_close"></i></a>
-            <div class="mobile-header-content-area">
-                <div class="header-offer-wrap mobile-header-padding-border-4">
-                    <p><i class="icon-paper-plane"></i> FREE SHIPPING world wide for all orders over <span>$199</span>
-                    </p>
-                </div>
-                <div class="mobile-search mobile-header-padding-border-1">
-                    <form class="search-form" action="#">
-                        <input type="text" placeholder="Search here…">
-                        <button class="button-search"><i class="icon-magnifier"></i></button>
-                    </form>
-                </div>
-                <div class="mobile-menu-wrap mobile-header-padding-border-2">
-                    <!-- mobile menu start -->
-                    <nav>
-                        <ul class="mobile-menu">
-                            <li class="menu-item-has-children"><a href="index.php">Home</a>
-                                <ul class="dropdown">
-                                    <li><a href="index.php">Home version 1 </a></li>
-                                    <li><a href="index-2.php">Home version 2</a></li>
-                                    <li><a href="index-3.php">Home version 3</a></li>
-                                    <li><a href="index-4.php">Home version 4</a></li>
-                                    <li><a href="index-5.php">Home version 5</a></li>
-                                    <li><a href="index-6.php">Home version 6</a></li>
-                                    <li><a href="index-7.php">Home version 7</a></li>
-                                    <li><a href="index-8.php">Home version 8</a></li>
-                                    <li><a href="index-9.php">Home version 9</a></li>
-                                    <li><a href="index-10.php">Home version 10</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children "><a href="#">shop</a>
-                                <ul class="dropdown">
-                                    <li class="menu-item-has-children"><a href="#">shop layout</a>
-                                        <ul class="dropdown">
-                                            <li><a href="book.php">standard style</a></li>
-                                            <li><a href="shop-list.php">shop list style</a></li>
-                                            <li><a href="shop-fullwide.php">shop fullwide</a></li>
-                                            <li><a href="shop-no-sidebar.php">grid no sidebar</a></li>
-                                            <li><a href="shop-list-no-sidebar.php">list no sidebar</a></li>
-                                            <li><a href="shop-right-sidebar.php">shop right sidebar</a></li>
-                                            <li><a href="store-location.php">store location</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children"><a href="#">Products Layout</a>
-                                        <ul class="dropdown">
-                                            <li><a href="product-details.php">tab style 1</a></li>
-                                            <li><a href="product-details-2.php">tab style 2</a></li>
-                                            <li><a href="product-details-sticky.php">sticky style</a></li>
-                                            <li><a href="product-details-gallery.php">gallery style </a></li>
-                                            <li><a href="product-details-affiliate.php">affiliate style</a></li>
-                                            <li><a href="product-details-group.php">group style</a></li>
-                                            <li><a href="product-details-fixed-img.php">fixed image style </a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children"><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="about-us.php">about us </a></li>
-                                    <li><a href="cart.php">cart page</a></li>
-                                    <li><a href="checkout.php">checkout </a></li>
-                                    <li><a href="my-account.php">my account</a></li>
-                                    <li><a href="wishlist.php">wishlist </a></li>
-                                    <li><a href="compare.php">compare </a></li>
-                                    <li><a href="contact.php">contact us </a></li>
-                                    <li><a href="order-tracking.php">order tracking</a></li>
-                                    <li><a href="login-register.php">login / register </a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children "><a href="#">Blog</a>
-                                <ul class="dropdown">
-                                    <li><a href="blog.php">blog standard </a></li>
-                                    <li><a href="blog.php">blog no sidebar </a></li>
-                                    <li><a href="blog-right-sidebar.php">blog right sidebar</a></li>
-                                    <li><a href="blog-details.php">blog details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="contact.php">Contact us</a></li>
-                        </ul>
-                    </nav>
-                    <!-- mobile menu end -->
-                </div>
-                <div class="mobile-contact-info mobile-header-padding-border-4">
-                    <ul>
-                        <li><i class="icon-phone "></i> (+612) 2531 5600</li>
-                        <li><i class="icon-envelope-open "></i> norda@domain.com</li>
-                        <li><i class="icon-home"></i> PO Box 1622 Colins Street West Australia</li>
-                    </ul>
-                </div>
-                <div class="mobile-social-icon">
-                    <a class="facebook" href="#"><i class="icon-social-facebook"></i></a>
-                    <a class="twitter" href="#"><i class="icon-social-twitter"></i></a>
-                    <a class="pinterest" href="#"><i class="icon-social-pinterest"></i></a>
-                    <a class="instagram" href="#"><i class="icon-social-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- mini cart start -->
-    <div class="sidebar-cart-active">
-        <div class="sidebar-cart-all">
-            <a class="cart-close" href="#"><i class="icon_close"></i></a>
-            <div class="cart-content">
-                <h3>Shopping Cart</h3>
-                <ul>
-                    <li class="single-product-cart">
-                        <div class="cart-img">
-                            <a href="#"><img src="assets/images/cart/cart-1.jpg" alt=""></a>
-                        </div>
-                        <div class="cart-title">
-                            <h4><a href="#">Simple Black T-Shirt</a></h4>
-                            <span> 1 × $49.00	</span>
-                        </div>
-                        <div class="cart-delete">
-                            <a href="#">×</a>
-                        </div>
-                    </li>
-                    <li class="single-product-cart">
-                        <div class="cart-img">
-                            <a href="#"><img src="assets/images/cart/cart-2.jpg" alt=""></a>
-                        </div>
-                        <div class="cart-title">
-                            <h4><a href="#">Norda Backpack</a></h4>
-                            <span> 1 × $49.00	</span>
-                        </div>
-                        <div class="cart-delete">
-                            <a href="#">×</a>
-                        </div>
-                    </li>
-                </ul>
-                <div class="cart-total">
-                    <h4>Subtotal: <span>$170.00</span></h4>
-                </div>
-                <div class="cart-checkout-btn">
-                    <a class="btn-hover cart-btn-style" href="cart.php">view cart</a>
-                    <a class="no-mrg btn-hover cart-btn-style" href="checkout.php">checkout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <?php include 'include/page_header.php' ?>
+
     <div class="breadcrumb-area bg-gray">
         <div class="container">
             <div class="breadcrumb-content text-center">
@@ -346,6 +109,13 @@ include('include/db.php');
                                 <div class="row">
                                     <?php
 
+                                    $keyword = "";
+                                    $keyword_sql = "";
+                                    if (isset($_GET["keyword"]) && $_GET["keyword"] != '') {
+                                        $keyword = $_GET['keyword'];
+                                        $keyword_sql = "AND (b.`name` LIKE '%$keyword%' OR t.`id` LIKE '%$keyword%' OR t.`name` LIKE '%$keyword%' OR a.`id` LIKE '%$keyword%' OR a.`name` LIKE '%$keyword%' OR p.`id` LIKE '%$keyword%' OR p.`name` LIKE '%$keyword%' OR b.`discription` LIKE '%$keyword%' OR b.`latest_price` LIKE '%$keyword%' OR b.`page` LIKE '%$keyword%' OR b.`isbn_no` LIKE '%$keyword%')";
+                                    }
+
                                     $selectedOption = "book_id";
                                     $selectedOption_qry = "";
                                     if (isset($_GET["filter"]) && $_GET["filter"] != '') {
@@ -366,7 +136,6 @@ include('include/db.php');
                                     if (isset($_GET["type"]) && $_GET["type"] != '') {
                                         $type = $_GET["type"];
                                         $type_q = " AND t.`id` IN(" . substr($type, 1, strlen($type) - 1) . ") ";
-
                                         $selectedType_qry = "&type=" . $_GET["type"];
 
                                     }
@@ -409,7 +178,7 @@ include('include/db.php');
 
                                     $start_from = ($page - 1) * $limit;
 
-                                    $sql = "SELECT DISTINCT b.`id` book_id,b.`name` book_name,t.`id` type_id,t.`name` type_name,a.id author_id,a.`name` author_name,p.`id` pub_id,p.`name` pub_name,b.`discription`,b.`latest_price`,b.`img1`,b.`page`,b.`isbn_no`,(SELECT GROUP_CONCAT(`categories`.`name`) FROM `book_has_cats` AS bhc LEFT JOIN `categories` ON bhc.cats_id = categories.`id` WHERE bhc.book_id=b.`id` ) AS cat FROM `book` b INNER JOIN `author` a INNER JOIN `publisher` p INNER JOIN `type` t JOIN `book_has_cats` bc WHERE b.`id`=bc.`book_id` AND a.`id`= b.`author_id` AND t.`id`=b.`type_id` AND p.`id` = b.`publisher_id` AND b.`is_Active`='1' " . $catq . $minq . $maxq . $type_q . " ORDER BY (" . $selectedOption . ") ASC LIMIT $start_from, $limit";
+                                    $sql = "SELECT DISTINCT b.`id` book_id,b.`name` book_name,t.`id` type_id,t.`name` type_name,a.id author_id,a.`name` author_name,p.`id` pub_id,p.`name` pub_name,b.`discription`,b.`latest_price`,b.`img1`,b.`page`,b.`isbn_no`,(SELECT GROUP_CONCAT(`categories`.`name`) FROM `book_has_cats` AS bhc LEFT JOIN `categories` ON bhc.cats_id = categories.`id` WHERE bhc.book_id=b.`id` ) AS cat FROM `book` b INNER JOIN `author` a INNER JOIN `publisher` p INNER JOIN `type` t JOIN `book_has_cats` bc WHERE b.`id`=bc.`book_id` AND a.`id`= b.`author_id` AND t.`id`=b.`type_id` AND p.`id` = b.`publisher_id` AND b.`is_Active`='1' " . $catq . $minq . $maxq . $type_q . $keyword_sql. " ORDER BY (" . $selectedOption . ") ASC LIMIT $start_from, $limit";
                                     $run_sql = mysqli_query($con, $sql);
 
                                     while ($row_run_sql = mysqli_fetch_array($run_sql)) {
@@ -548,7 +317,8 @@ include('include/db.php');
                                 ?>
 
                                 <?php
-                                $result_db = mysqli_query($con, "SELECT COUNT(id) FROM `book` where is_Active='1'");
+                                $page_sql = "SELECT DISTINCT COUNT(b.`id`) bcount ,(SELECT GROUP_CONCAT(`categories`.`name`) FROM `book_has_cats` AS bhc LEFT JOIN `categories` ON bhc.cats_id = categories.`id` WHERE bhc.book_id=b.`id` ) AS cat FROM `book` b INNER JOIN `author` a INNER JOIN `publisher` p INNER JOIN `type` t JOIN `book_has_cats` bc WHERE b.`id`=bc.`book_id` AND a.`id`= b.`author_id` AND t.`id`=b.`type_id` AND p.`id` = b.`publisher_id` AND b.`is_Active`='1' " . $catq . $minq . $maxq . $type_q . " ORDER BY (" . $selectedOption . ")";
+                                $result_db = mysqli_query($con, $page_sql);
                                 $row_db = mysqli_fetch_row($result_db);
                                 $total_records = $row_db[0];
                                 $total_pages = ceil($total_records / $limit);
@@ -576,8 +346,8 @@ include('include/db.php');
                         <div class="sidebar-widget mb-40">
                             <h4 class="sidebar-widget-title">Search </h4>
                             <div class="sidebar-search">
-                                <form class="sidebar-search-form" action="#">
-                                    <input type="text" placeholder="Search here...">
+                                <form method="GET" class="sidebar-search-form" action="book.php">
+                                    <input type="text" name="keyword" placeholder="Search here...">
                                     <button>
                                         <i class="icon-magnifier"></i>
                                     </button>

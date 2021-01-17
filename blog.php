@@ -2,6 +2,12 @@
 <html class="no-js" lang="en">
 <?php
 include('include/db.php');
+session_start();
+$user = '';
+if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
+//    header("location:my-account.php");
+}
 ?>
 <head>
     <meta charset="utf-8">
